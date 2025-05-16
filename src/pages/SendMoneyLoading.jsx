@@ -1,4 +1,4 @@
-import { FadeLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
 
 import mobile_flip from "../assets/mobile_flip.svg";
 
@@ -6,7 +6,7 @@ const SendMoneyLoading = () => {
   return (
     <main className="flex flex-col justify-center items-center pt-[18.3333%] pb-[11.875%] h-screen">
       <div className="flex justify-center items-center -translate-y-1/4">
-        <FadeLoader color="#2E7D32" height={20} margin={20} width={5} />
+        <PulseLoader color="#2E7D32" height={20} margin={20} width={5} />
       </div>
       <section className="flex flex-col justify-center gap-[60px] text-center">
         <div className="flex flex-col gap-[8px]">
