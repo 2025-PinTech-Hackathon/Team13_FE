@@ -5,8 +5,7 @@ import { OpenAI } from "openai";
 import cameraButton from "./../assets/camera_button.png";
 import sendMoneyAr from "./../assets/send_money_ar.png";
 import { useNavigate } from "react-router-dom";
-import phone_rotate from "./../assets/phone_rotate.svg";
-import axiosClient from "../services/axiosClient";
+import axios from "axios";
 
 const FIXED_PROMPT =
   "왼쪽, 오른쪽 파트를 각각 영어로 번역하고 중괄호로만 감싸진 json 포맷으로 변환한것만 나에게 줘. '```', 'json'은 출력하지마. json 파일 필드명은 bank, account_number, name, amount 로 해줘. 'Left', 'Right' 도 출력해줘.";
@@ -85,7 +84,9 @@ function AR() {
         console.log(parsed);
         // 3) DB 저장
         try {
-          const res = await axiosClient.post("/api/upload", { Left: parsed.Left });
+          const res = await axios.post("https://54.180.93.45:5000/api/upload", {
+            Left: parsed.Left,
+          });
           if (res.data.status === "success") {
             navigate("/confirm");
           } else {
