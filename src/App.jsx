@@ -18,6 +18,7 @@ import Step1 from "./pages/how_to_use/Step1";
 import Step2 from "./pages/how_to_use/Step2";
 import Step3 from "./pages/how_to_use/Step3";
 import Step4 from "./pages/how_to_use/Step4";
+import MyBankBooks from "./pages/MyBankbooks";
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
             <Route path="/confirm" element={<TransferConfirm />} />
             <Route path="/password" element={<Password />} />
             <Route path="/send_complete" element={<SendMoneyComplete />} />
-            <Route path="/account_view" element={<AccountView />} />
+            <Route path="/account_view" element={<MyBankBooks />} />
+            <Route path="/account_view/detail" element={<AccountView />} />
             {/* <Route index element={<SendMoneyCamera />} /> */}
 
             <Route path="/loading" element={<Loading />} />
