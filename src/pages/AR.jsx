@@ -88,7 +88,7 @@ function AR() {
                 bottom: 0,
               }}
             />
-            <img className="relative z-10 -translate-x-10" src={sendMoneyAr} alt="sendMoneyAr" />
+            <img className="relative h-[80%] z-10" src={sendMoneyAr} alt="sendMoneyAr" />
             <button
               className="absolute bottom-[36px] right-1/2 cursor-pointer"
               onClick={() => {
