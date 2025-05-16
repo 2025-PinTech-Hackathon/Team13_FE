@@ -11,10 +11,22 @@ const MyBankBooks = () => {
       </section>
 
       <section className="flex flex-col gap-[24px]">
-        <Bankbook bank="kakao" onClick={() => navigate("/account_view/detail")} />
-        <Bankbook bank="kukmin" onClick={() => navigate("/account_view/detail")} />
-        <Bankbook bank="shinhan" onClick={() => navigate("/account_view/detail")} />
-        <Bankbook bank="hana" onClick={() => navigate("/account_view/detail")} />
+        <Bankbook
+          bank="kakao"
+          onClick={() => navigate("/account_view/detail", { state: { bank: "kakao" } })}
+        />
+        <Bankbook
+          bank="kukmin"
+          onClick={() => navigate("/account_view/detail", { state: { bank: "kukmin" } })}
+        />
+        <Bankbook
+          bank="shinhan"
+          onClick={() => navigate("/account_view/detail", { state: { bank: "shinhan" } })}
+        />
+        <Bankbook
+          bank="hana"
+          onClick={() => navigate("/account_view/detail", { state: { bank: "hana" } })}
+        />
       </section>
     </main>
   );

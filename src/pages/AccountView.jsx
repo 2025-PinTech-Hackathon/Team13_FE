@@ -1,10 +1,26 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import ic_down_arrow from "../assets/ic_down_arrow.svg";
+import kakao from "../assets/bankbooks/logos/logo_kakao.png";
+import kukmin from "../assets/bankbooks/logos/logo_kukmin.png";
+import shinhan from "../assets/bankbooks/logos/logo_shinhan.png";
+import hana from "../assets/bankbooks/logos/logo_hana.png";
 
 const AccountView = () => {
+  const location = useLocation();
+  const { bank } = location.state || {};
   const navigate = useNavigate();
+  let logo = null;
+  if (bank === "kakao") {
+    logo = kakao;
+  } else if (bank === "kukmin") {
+    logo = kukmin;
+  } else if (bank === "shinhan") {
+    logo = shinhan;
+  } else if (bank === "hana") {
+    logo = hana;
+  }
 
   const transactions = [
     { type: "출금", date: "2025.05.16 12:00", amount: -56700, balance: 43300 },
@@ -30,8 +46,8 @@ const AccountView = () => {
 
           <div className="relative pt-[20px] px-[16px]">
             <div className="flex justify-start gap-[12px]">
-              <div className="w-[48px] h-[48px] rounded-full bg-sub_green ">
-                <p className="text-white text-center mt-3">내돈</p>
+              <div className="w-[48px] h-[48px] rounded-full bg-gray1 ">
+                <img src={logo} alt="logo" className="w-[48px] h-[48px]" />
               </div>
               <div className="">
                 <p className="Pr_Re_16 text-txt-gray-1">최준혁</p>
