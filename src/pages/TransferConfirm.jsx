@@ -6,6 +6,8 @@ import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import BottomBtn from "../components/BottomBtn";
 
 const TransferConfirm = () => {
+    const navigate = useNavigate();
+    
   const accountName = "내돈";
   const accountNumber = "000000-00-000000";
   const balance = "100,000원";
@@ -14,6 +16,8 @@ const TransferConfirm = () => {
   const amount = 56700;
 
   return (
+    
+
     <main className="relative w-[480px] h-screen mx-auto flex flex-col justify-center items-center px-5 py-8">
       {/* 상단: 계좌 정보 */}
       <div className="flex flex-col items-center space-y-2 ">

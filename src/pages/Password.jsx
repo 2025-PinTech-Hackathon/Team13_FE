@@ -21,7 +21,9 @@ const Password = () => {
       return;
     }
     if (pin === CORRECT_PIN) {
-      navigate('/transfer_confirm');
+
+        // 여기 채워주세용
+      navigate('/');
     } else {
       alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
       setPin('');
@@ -152,8 +154,7 @@ const Password = () => {
         </button>
         <button
           className="flex-1 h-[80px] bg-main text-txt-black Pr_SB_20 pt-1"
-        //   이 부분 연결해주세용
-          onClick={() => navigate('/')}
+          onClick={handleConfirm}
         >
           확인
         </button>
