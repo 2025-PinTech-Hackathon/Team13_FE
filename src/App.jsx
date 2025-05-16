@@ -14,10 +14,10 @@ import Loading from "./pages/Loading";
 import SendMoneyComplete from "./pages/SendMonyComplete";
 import AccountView from "./pages/AccountView";
 
-import Step1 from "./pages/Step1";
-import Step2 from "./pages/Step2";
-import Step3 from "./pages/Step3";
-import Step4 from "./pages/Step4";
+import Step1 from "./pages/how_to_use/Step1";
+import Step2 from "./pages/how_to_use/Step2";
+import Step3 from "./pages/how_to_use/Step3";
+import Step4 from "./pages/how_to_use/Step4";
 
 function App() {
   return (
