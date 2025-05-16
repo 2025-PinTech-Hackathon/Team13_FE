@@ -11,6 +11,8 @@ export default {
         bg: "#FFFFFF",
         sub1: "#2E7D32",
         sub2: "#C62828",
+        gray1: "#E0E0E0",
+        gray2: "#f5f5f5"
       },
     },
   },
