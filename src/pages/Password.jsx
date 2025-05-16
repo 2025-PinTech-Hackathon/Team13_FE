@@ -2,6 +2,7 @@
 import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { XMarkIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+import PasswordBtn from "../components/PasswordBtn";
 
 const Password = () => {
   const navigate = useNavigate();

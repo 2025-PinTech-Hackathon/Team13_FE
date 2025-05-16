@@ -27,7 +27,7 @@ const Landing = () => {
       <div className="w-full max-w-[360px] space-y-3">
         <button
           className="w-full h-[50px] bg-main rounded-lg flex items-center justify-center text-[20px] leading-[30px] font-semibold tracking-[-0.22px] text-txt-black"
-          onClick={() => navigate("/ar")}
+          onClick={() => navigate("/step1")}
         >
           돈 송금하기
         </button>
