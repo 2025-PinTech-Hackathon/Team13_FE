@@ -5,6 +5,8 @@ import Landing from "./pages/Landing";
 import SendMoney from "./pages/SendMoney";
 import MyAccount from "./pages/MyAccount";
 import SendMoneyCamera from "./pages/SendMoneyCamera";
+import TransferConfirm from "./pages/TransferConfirm";
+import Password from "./pages/Password";
 
 function App() {
   return (
@@ -13,7 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<DefaultLayout />}>
             {/* <Route index element={<Landing />} /> */}
-            <Route index element={<SendMoneyCamera />} />
+            {/* <Route index element={<SendMoneyCamera />} /> */}
+            <Route index element={<TransferConfirm />} />
           </Route>
 
             {/* 돈 송금하기 */}
@@ -21,6 +24,9 @@ function App() {
 
             {/* 내 계좌 보기 */}
           <Route path="/my_account" element={<MyAccount />}></Route>
+
+          {/* 송금 비밀번호 입력 */}
+          <Route path="/password" element={<Password />}></Route>
         </Routes>
       </div>
     </Router> 
