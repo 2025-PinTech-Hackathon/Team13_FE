@@ -22,6 +22,7 @@ import MyBankBooks from "./pages/MyBankbooks";
 import AR2 from "./pages/AR2";
 import Chat from "./pages/Chat";
 import AR3 from "./pages/AR3";
+import TransferConfirm2 from "./pages/TransferConfirm2";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             <Route path="/ar3" element={<AR3 />} />
             <Route path="/send_money_loading" element={<SendMoneyLoading />} />
             <Route path="/confirm" element={<TransferConfirm />} />
+            <Route path="/confirm2" element={<TransferConfirm2 />} />
             <Route path="/password" element={<Password />} />
             <Route path="/send_complete" element={<SendMoneyComplete />} />
             <Route path="/account_view" element={<MyBankBooks />} />

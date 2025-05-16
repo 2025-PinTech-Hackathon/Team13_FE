@@ -73,11 +73,12 @@ function AR3() {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+
+        navigate("/chat");
       };
       reader.readAsDataURL(blob);
 
       // 다운로드 후 routing
-      navigate("/chat");
     } catch (error) {
       alert("풀 해상도 촬영 실패", error);
       // fallback to screenshot

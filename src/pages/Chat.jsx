@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { OpenAI } from "openai";
+import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 
 function Chat() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   // 고정된 프롬프트 정의
   const FIXED_PROMPT =
@@ -103,9 +107,14 @@ function Chat() {
 
       alert(`API 호출 중 오류가 발생했습니다: ${error.message}`);
     } finally {
+      navigate("/confirm2", { state: { response: response } });
       setLoading(false);
     }
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="App">
