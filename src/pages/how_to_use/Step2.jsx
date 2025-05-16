@@ -25,7 +25,7 @@ const Step2 = () => {
       </div>
 
       {/* 이미지 및 화살표 */}
-      <div className="flex justify-evenly items-center w-full h-[532px]">
+      <div className="flex justify-evenly items-center w-full object-cover aspect-[4/5]">
         <button onClick={() => navigate("/step1")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -65,8 +65,8 @@ const Step2 = () => {
       </div>
 
       {/* 하단 */}
-      <div className="flex flex-col justify-center items-center">
-        <div className="h-[56px]"></div>
+      <div className="flex flex-col justify-center items-center ">
+        {/* <div className="h-[5px]"></div> */}
 
         <div className="flex items-center space-x-2">
           <div className="w-[12px] h-[12px] rounded-full bg-main"></div>

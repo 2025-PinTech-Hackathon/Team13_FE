@@ -38,7 +38,7 @@ const Step1 = () => {
 
       {/* 이미지 및 화살표 */}
       <div className="flex justify-evenly">
-        <div className="flex justify-center items-center w-[80%] aspect-[2/3] object-cover">
+        <div className="flex justify-center items-center w-[80%] aspect-[4/5] object-cover">
             <img src={step1} alt="Step 1" className="w-[73.95833333333333%] h-auto" />
             </div>
         {/* 내비게이트 step2 이동 */}
@@ -61,17 +61,17 @@ const Step1 = () => {
       </div>
 
       {/* 하단 */}
-      <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center space-y-4">
         {/* ✅ 2초 후에 사라지는 말풍선 */}
         <div
-          className={`w-[267px] h-[56px] rounded-[10px] border border-gray2 bg-gray2 mb-10 transition-opacity duration-300 ${
+          className={`w-[267px] h-[56px] rounded-[10px] border border-gray2 bg-gray2 transition-opacity duration-300 ${
             showTip ? "opacity-100" : "opacity-0 pointer-events-none select-none"
           }`}
         >
           <p className="text-txt-gray-1 Pr_Re_20 text-center mt-3">좌우로 넘겨서 내용 확인하기</p>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 pt-5">
           {/* 현재 스텝 (1번) */}
           <div className="w-[42px] h-[42px] rounded-full bg-main flex items-center justify-center text-txt-black Pr_SB_24">
             1
