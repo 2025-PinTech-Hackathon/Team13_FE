@@ -43,7 +43,7 @@ const Step2 = () => {
           </svg>
         </button>
 
-        <img src={step2} alt="Step 2" className="w-[355px] h-[532px]" />
+        <img src={step2} alt="Step 2" className="w-[73.95833333333333%] h-auto" />
 
         {/* 내비게이트 step3 이동 */}
         <button onClick={() => navigate("/step3")}>

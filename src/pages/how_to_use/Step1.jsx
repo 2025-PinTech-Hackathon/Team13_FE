@@ -38,7 +38,7 @@ const Step1 = () => {
 
       {/* 이미지 및 화살표 */}
       <div className="flex justify-evenly">
-        <img src={step1} alt="Step 1" className="w-[355px] h-[532px]" />
+        <img src={step1} alt="Step 1" className="w-[73.95833333333333%] h-auto" />
         {/* 내비게이트 step2 이동 */}
         <button onClick={() => navigate("/step2")}>
           <svg

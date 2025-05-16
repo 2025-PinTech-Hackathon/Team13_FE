@@ -43,7 +43,7 @@ const Step4 = () => {
           </svg>
         </button>
 
-        <img src={step4} alt="Step 4" className="w-[355px] h-[532px]" />
+        <img src={step4} alt="Step 4" className="w-[73.95833333333333%] h-auto" />
       </div>
 
       {/* 하단 */}
