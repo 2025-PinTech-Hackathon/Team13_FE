@@ -43,7 +43,9 @@ const Step4 = () => {
           </svg>
         </button>
 
+        <div className="flex justify-center items-center w-[80%] aspect-[2/3] object-cover">
         <img src={step4} alt="Step 4" className="w-[73.95833333333333%] h-auto" />
+        </div>
       </div>
 
       {/* 하단 */}
