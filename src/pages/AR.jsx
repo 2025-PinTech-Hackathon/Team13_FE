@@ -1,15 +1,16 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
 
 import cameraButton from "./../assets/camera_button.png";
 import sendMoneyAr from "./../assets/send_money_ar.png";
 import { useNavigate } from "react-router-dom";
+import phone_rotate from "./../assets/phone_rotate.svg";
 
 function AR() {
   const webcamRef = useRef(null);
   const [isCameraOn, setIsCameraOn] = useState(true);
   const [capturedImage, setCapturedImage] = useState(null);
-
+  const [isPortrait, setIsPortrait] = useState(true);
   const [fullPhoto, setFullPhoto] = useState(null);
 
   const navigate = useNavigate();
@@ -22,9 +23,36 @@ function AR() {
     // height: 480,
     width: { ideal: MAX_WIDTH },
     height: { ideal: MAX_HEIGHT },
-    // facingMode: "user", // <- 테스트용 전면 카메라/
+    // facingMode: "user", // <- 테스트용 전면 카메라
     facingMode: "environment", // <- 후면 카메라 고정
   };
+
+  useEffect(() => {
+    const checkOrientation = () => {
+      if (window.screen.orientation) {
+        // screen.orientation API 사용
+        const orientation = window.screen.orientation.type;
+        setIsPortrait(orientation.includes("portrait"));
+      } else {
+        // fallback: window.orientation 사용
+        const orientation = window.orientation;
+        setIsPortrait(orientation === 0 || orientation === 180);
+      }
+    };
+
+    checkOrientation();
+
+    window.addEventListener("orientationchange", checkOrientation);
+    window.addEventListener("resize", checkOrientation);
+
+    const intervalId = setInterval(checkOrientation, 1000);
+
+    return () => {
+      window.removeEventListener("orientationchange", checkOrientation);
+      window.removeEventListener("resize", checkOrientation);
+      clearInterval(intervalId);
+    };
+  }, []);
 
   // 풀 해상도 촬영
   const takeFullPhoto = async () => {
@@ -69,6 +97,15 @@ function AR() {
 
   return (
     <main className="w-full h-screen">
+      {isPortrait && (
+        <>
+          <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50"></div>
+          <div className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-full z-[60]">
+            <img className="z-60" src={phone_rotate} alt="phone_rotate" />
+            <p className="Pr_SB_28 text-white ">휴대폰을 가로로 돌려 주세요.</p>
+          </div>
+        </>
+      )}
       <div className="w-full h-full" style={{ position: "relative" }}>
         {isCameraOn && !capturedImage && !fullPhoto && (
           <div className="flex justify-center items-center w-full h-full">

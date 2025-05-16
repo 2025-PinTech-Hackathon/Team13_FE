@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const BottomBtn = ({ prevRoute, nextRoute }) => {
+const BottomBtn = ({ prevRoute, nextRoute, leftText = "취소", rightText = "확인" }) => {
   const navigate = useNavigate();
 
   return (
@@ -11,13 +11,13 @@ const BottomBtn = ({ prevRoute, nextRoute }) => {
           navigate(prevRoute);
         }}
       >
-        취소
+        {leftText}
       </button>
       <button
         className="flex-1 h-[80px] bg-main text-txt-black Pr_SB_20 pt-1"
         onClick={() => navigate(nextRoute)}
       >
-        확인
+        {rightText}
       </button>
     </div>
   );
