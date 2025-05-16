@@ -19,8 +19,8 @@ function AR() {
     // height: 480,
     width: { ideal: MAX_WIDTH },
     height: { ideal: MAX_HEIGHT },
-    facingMode: "user", // <- 테스트용 전면 카메라
-    // facingMode: "environment", // <- 후면 카메라 고정
+    // facingMode: "user", // <- 테스트용 전면 카메라
+    facingMode: "environment", // <- 후면 카메라 고정
   };
 
   // 풀 해상도 촬영
@@ -65,10 +65,10 @@ function AR() {
   };
 
   return (
-    <main>
-      <div className="w-full h-screen" style={{ position: "relative" }}>
+    <main className="w-full h-screen">
+      <div className="w-full h-full" style={{ position: "relative" }}>
         {isCameraOn && !capturedImage && !fullPhoto && (
-          <>
+          <div className="flex justify-center items-center w-full h-full">
             <Webcam
               audio={false}
               ref={webcamRef}
@@ -88,9 +88,9 @@ function AR() {
                 bottom: 0,
               }}
             />
-            <img className="relative h-[80%] z-10" src={sendMoneyAr} alt="sendMoneyAr" />
+            <img className="relative h-[90%] z-10" src={sendMoneyAr} alt="sendMoneyAr" />
             <button
-              className="absolute bottom-[36px] right-1/2 cursor-pointer"
+              className="absolute bottom-[36px] right-1/2 translate-x-1/2 cursor-pointer"
               onClick={() => {
                 if (isCameraOn) {
                   takeFullPhoto();
@@ -99,7 +99,7 @@ function AR() {
             >
               <img className="size-[72px] rotate-90" src={cameraButton} alt="cameraButton" />
             </button>
-          </>
+          </div>
         )}
         {(capturedImage || fullPhoto) && (
           <div className="captured-image">
