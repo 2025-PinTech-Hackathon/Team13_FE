@@ -81,6 +81,7 @@ function AR() {
           return;
         }
 
+        console.log(parsed);
         // 3) DB 저장
         try {
           const res = await axiosClient.post("/api/upload", { Left: parsed.Left });
