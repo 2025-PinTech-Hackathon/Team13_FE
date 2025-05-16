@@ -1,11 +1,13 @@
 // src/pages/SendMoneyCamera.jsx
-import React from 'react';
-import { ArrowRightIcon, CameraIcon } from '@heroicons/react/24/outline';
+import React from "react";
+import { ArrowRightIcon, CameraIcon } from "@heroicons/react/24/outline";
 
-const SendMoneyCamera = () => {
+const SendMoneyCamera = ({ ...props }) => {
   return (
-    <div className="relative w-[1000px] h-[480px] mx-auto flex pl-10 flex-col items-center justify-center bg-gray2 px-5 space-y-8">
-      
+    <div
+      className="relative w-[1000px] h-[480px] mx-auto flex pl-10 flex-col items-center justify-center bg-gray2 px-5 space-y-8 origin-right rotate-90"
+      {...props}
+    >
       {/* ── 상단: 보내는 사람 ▶ 받는 사람 */}
       <div className="self-start flex items-start space-x-4">
         {/* 보내는 사람 */}
@@ -15,11 +17,15 @@ const SendMoneyCamera = () => {
           </div>
           <div className="p-4 space-y-2">
             <div className="flex items-center space-x-2">
-              <button className="w-[98px] h-[56px] bg-gray-200 rounded-lg text-gray-800">은행</button>
+              <button className="w-[98px] h-[56px] bg-gray-200 rounded-lg text-gray-800">
+                은행
+              </button>
               <input className="w-[248px] h-[56px] border-2 border-red-500 rounded-lg px-3 focus:outline-none" />
             </div>
             <div className="flex items-center space-x-2">
-              <button className="w-[98px] h-[56px] bg-gray-200 rounded-lg text-gray-800">계좌번호</button>
+              <button className="w-[98px] h-[56px] bg-gray-200 rounded-lg text-gray-800">
+                계좌번호
+              </button>
               <input className="w-[248px] h-[56px] border-2 border-red-500 rounded-lg px-3 focus:outline-none" />
             </div>
           </div>
@@ -35,11 +41,15 @@ const SendMoneyCamera = () => {
           </div>
           <div className="p-4 space-y-2">
             <div className="flex items-center space-x-2">
-              <button className="w-[98px] h-[56px] bg-gray-200 rounded-lg text-gray-800">은행</button>
+              <button className="w-[98px] h-[56px] bg-gray-200 rounded-lg text-gray-800">
+                은행
+              </button>
               <input className="w-[248px] h-[56px] border-2 border-red-500 rounded-lg px-3 focus:outline-none" />
             </div>
             <div className="flex items-center space-x-2">
-              <button className="w-[98px] h-[56px] bg-gray-200 rounded-lg text-gray-800">계좌번호</button>
+              <button className="w-[98px] h-[56px] bg-gray-200 rounded-lg text-gray-800">
+                계좌번호
+              </button>
               <input className="w-[248px] h-[56px] border-2 border-red-500 rounded-lg px-3 focus:outline-none" />
             </div>
           </div>

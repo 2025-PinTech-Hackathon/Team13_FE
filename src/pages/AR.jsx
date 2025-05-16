@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 import Webcam from "react-webcam";
 
-import react from "./../assets/react.svg";
+import cameraButton from "./../assets/camera_button.png";
+import sendMoneyAr from "./../assets/send_money_ar.png";
 
 function AR() {
   const webcamRef = useRef(null);
@@ -87,43 +88,23 @@ function AR() {
                 bottom: 0,
               }}
             />
-            <img
-              src={react}
-              alt="react"
-              style={{
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                width: "100px",
-                zIndex: 1000,
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
+            <img className="relative z-10 -translate-x-10" src={sendMoneyAr} alt="sendMoneyAr" />
+            <button
+              className="absolute bottom-[36px] right-1/2 cursor-pointer"
+              onClick={() => {
+                if (isCameraOn) {
+                  takeFullPhoto();
+                }
               }}
-            />
+            >
+              <img className="size-[72px] rotate-90" src={cameraButton} alt="cameraButton" />
+            </button>
           </>
         )}
         {(capturedImage || fullPhoto) && (
           <div className="captured-image">
             <img src={fullPhoto || capturedImage} alt="캡처된 이미지" />
           </div>
-        )}
-      </div>
-      <div className="button-container">
-        <button onClick={() => setIsCameraOn(!isCameraOn)} className="camera-toggle">
-          {isCameraOn ? "카메라 끄기" : "카메라 켜기"}
-        </button>
-        {isCameraOn && (
-          <>
-            <button onClick={capture} className="capture-button">
-              기본 캡처
-            </button>
-            <button onClick={takeFullPhoto} className="capture-button">
-              풀 해상도 촬영
-            </button>
-          </>
         )}
       </div>
     </main>
