@@ -5,7 +5,7 @@ const Step3 = () => {
   const navigate = useNavigate();
 
   return (
-    <main className="w-[480px] h-[100vh] flex flex-col justify-center">
+    <main className="w-full min-h-screen flex flex-col justify-center pl-[6.66666666666667%] pr-[5%]">
       {/* 상단 */}
       <div className="flex flex-col">
         <div className="flex justify-between">
