@@ -104,49 +104,45 @@ function AR() {
   return (
     <main className="w-full h-screen">
       <div className="w-full h-full" style={{ position: "relative" }}>
-        {isCameraOn && !capturedImage && !fullPhoto && (
-          <div className="flex justify-center items-center w-full h-full">
-            <Webcam
-              audio={false}
-              ref={webcamRef}
-              screenshotFormat="image/png"
-              screenshotQuality={1}
-              screenshotWidth={MAX_WIDTH}
-              screenshotHeight={MAX_HEIGHT}
-              videoConstraints={videoConstraints}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-              }}
-            />
-            <img className="relative h-[100%] z-10" src={sendMoneyAr} alt="sendMoneyAr" />
-            <div
-              className="absolute bottom-[36px] right-1/2 translate-x-1/2 cursor-pointer bg-white rounded-full z-20"
-              onClick={async () => {
-                if (isCameraOn) {
-                  await takeFullPhoto();
-                  navigate("/confirm");
-                }
-              }}
-            >
-              <img className="size-[72px] rotate-90" src={cameraButton} alt="cameraButton" />
-            </div>
-            <button
-              className="absolute bottom-[36px] left-0 bottom-0 w-[98px] h-[56px] bg-gray2 rounded-[12px] cursor-pointer z-20 rotate-90"
-              onClick={() => {
-                navigate("/");
-              }}
-            >
-              촬영 취소
-            </button>
+        <div className="flex justify-center items-center w-full h-full">
+          <Webcam
+            audio={false}
+            ref={webcamRef}
+            screenshotFormat="image/png"
+            screenshotQuality={1}
+            screenshotWidth={MAX_WIDTH}
+            screenshotHeight={MAX_HEIGHT}
+            videoConstraints={videoConstraints}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+            }}
+          />
+          <img className="relative h-[100%] z-10" src={sendMoneyAr} alt="sendMoneyAr" />
+          <div
+            className="absolute bottom-[36px] right-1/2 translate-x-1/2 cursor-pointer bg-white rounded-full z-20"
+            onClick={async () => {
+              await takeFullPhoto();
+              navigate("/confirm");
+            }}
+          >
+            <img className="size-[72px] rotate-90" src={cameraButton} alt="cameraButton" />
           </div>
-        )}
+          <button
+            className="absolute bottom-[36px] left-0 bottom-0 w-[98px] h-[56px] bg-gray2 rounded-[12px] cursor-pointer z-20 rotate-90"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            촬영 취소
+          </button>
+        </div>
       </div>
     </main>
   );
