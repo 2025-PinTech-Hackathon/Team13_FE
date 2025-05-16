@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-import ic_down_arrow from "../assets/ic_down_arrow.svg";
 import BankLogo from "../components/BankLogo";
+import ScrollDownAnimation from "../components/ScrollDownAnimation";
 
 const AccountView = () => {
   const location = useLocation();
@@ -83,31 +83,7 @@ const AccountView = () => {
       <div className="h-[195px]"></div>
 
       <section className="flex flex-col gap-[32px] fixed bottom-0 max-w-[480px] w-screen ">
-        <div
-          className="flex flex-col justify-center items-center animate-bounce"
-          style={{
-            animation: "moveArrow 1.5s infinite ease-in-out",
-          }}
-        >
-          <div className="flex justify-center items-center mb-[4px] w-[267px] h-[56px] rounded-[10px] bg-gray2 Pr_Re_20 text-txt-gray-1">
-            아래로 내려서 내역 더보기
-          </div>
-          <img className="w-[48px] h-[24px] " src={ic_down_arrow} alt="ic_down_arrow" />
-        </div>
-
-        <style jsx>{`
-          @keyframes moveArrow {
-            0% {
-              transform: translateY(0);
-            }
-            50% {
-              transform: translateY(10px);
-            }
-            100% {
-              transform: translateY(0);
-            }
-          }
-        `}</style>
+        <ScrollDownAnimation content="아래로 내려서 내역 더보기" />
 
         <button
           className="flex justify-center items-center w-full h-[79px] Pr_SB_20 bg-gray2"
