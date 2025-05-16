@@ -10,7 +10,7 @@ function AR() {
   const webcamRef = useRef(null);
   const [isCameraOn, setIsCameraOn] = useState(true);
   const [capturedImage, setCapturedImage] = useState(null);
-  const [isPortrait, setIsPortrait] = useState(true);
+  const [isPortrait, setIsPortrait] = useState(false);
   const [fullPhoto, setFullPhoto] = useState(null);
 
   const navigate = useNavigate();
@@ -27,6 +27,7 @@ function AR() {
     facingMode: "environment", // <- 후면 카메라 고정
   };
 
+  /*
   useEffect(() => {
     // 1) matchMedia 객체 생성
     const mql = window.matchMedia("(orientation: portrait)");
@@ -52,6 +53,8 @@ function AR() {
       }
     };
   }, []);
+  */
+
   // 풀 해상도 촬영
   const takeFullPhoto = async () => {
     if (!webcamRef.current?.stream) return;
