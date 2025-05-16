@@ -11,6 +11,7 @@ import AR from "./pages/AR";
 import SendMoneyLoading from "./pages/SendMoneyLoading";
 import "./styles/fonts.css";
 import Loading from "./pages/Loading";
+import SendMoneyComplete from "./pages/SendMonyComplete";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/send_money_loading" element={<SendMoneyLoading />} />
             <Route path="/confirm" element={<TransferConfirm />} />
             <Route path="/password" element={<Password />} />
+            <Route path="/send_complete" element={<SendMoneyComplete />} />
             {/* <Route index element={<SendMoneyCamera />} /> */}
 
             <Route path="/loading" element={<Loading />} />
