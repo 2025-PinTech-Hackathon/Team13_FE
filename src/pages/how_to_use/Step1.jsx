@@ -89,7 +89,7 @@ const Step1 = () => {
         </section>
 
         {/* 건너뛰기 버튼 */}
-        <div className="fixed bottom-0 left-0 w-full h-[79px] text-center bg-gray2">
+        <div className="fixed bottom-0 max-w-[480px] w-full h-[79px] text-center bg-gray2">
             <button
             className="text-txt-black Pr_SB_20 pt-6"
             onClick={() => navigate("/ar")}

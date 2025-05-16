@@ -54,7 +54,7 @@ const Step4 = () => {
         </div>
 
         {/* 하단 영역 */}
-        <div className="flex flex-col items-center space-y-4 pb-5">
+        <div className="flex flex-col items-center space-y-4  mt-[-25px]">
           <div className="flex items-center space-x-2">
             <div className="w-[12px] h-[12px] rounded-full bg-main" />
             <div className="w-[12px] h-[12px] rounded-full bg-main" />
@@ -67,7 +67,7 @@ const Step4 = () => {
       </section>
 
       {/* 확인 버튼 (고정 하단) */}
-      <div className="fixed bottom-0 left-0 w-screen h-[79px] text-center bg-main">
+      <div className="fixed bottom-0 max-w-[480px] w-full h-[79px] text-center bg-main">
         <button
           className="text-txt-black Pr_SB_20 pt-6"
           onClick={() => navigate("/ar")}
