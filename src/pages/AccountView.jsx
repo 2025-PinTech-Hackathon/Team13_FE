@@ -108,7 +108,7 @@ const AccountView = () => {
         `}</style>
 
         <button
-          className="flex justify-center items-center w-screen h-[79px] Pr_SB_20 bg-gray2"
+          className="flex justify-center items-center w-full h-[79px] Pr_SB_20 bg-gray2"
           onClick={() => navigate("/")}
         >
           처음 화면으로
