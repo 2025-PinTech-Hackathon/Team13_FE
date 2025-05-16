@@ -44,7 +44,7 @@ const Password = () => {
     }
     if (pin === CORRECT_PIN) {
       // 다음 스텝으로 이동
-      navigate("/");
+      navigate("/send_complete");
     } else {
       setAttempts((prev) => prev + 1); // 틀릴 때마다 카운트
       setPin("");
