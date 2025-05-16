@@ -19,7 +19,7 @@ function AR() {
     // height: 480,
     width: { ideal: MAX_WIDTH },
     height: { ideal: MAX_HEIGHT },
-    // facingMode: "user", // <- 테스트용 전면 카메라
+    // facingMode: "user", // <- 테스트용 전면 카메라/
     facingMode: "environment", // <- 후면 카메라 고정
   };
 
@@ -88,7 +88,7 @@ function AR() {
                 bottom: 0,
               }}
             />
-            <img className="relative h-[90%] z-10" src={sendMoneyAr} alt="sendMoneyAr" />
+            <img className="relative h-[100%] z-10" src={sendMoneyAr} alt="sendMoneyAr" />
             <button
               className="absolute bottom-[36px] right-1/2 translate-x-1/2 cursor-pointer"
               onClick={() => {
