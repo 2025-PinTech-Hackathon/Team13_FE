@@ -25,7 +25,7 @@ const Step2 = () => {
       </div>
 
       {/* 이미지 및 화살표 */}
-      <div className="flex justify-evenly items-center">
+      <div className="flex justify-evenly items-center w-full h-[532px]">
         <button onClick={() => navigate("/step1")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
