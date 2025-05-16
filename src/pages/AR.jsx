@@ -92,7 +92,7 @@ function AR() {
           }
         } catch (err) {
           console.error("API 호출 실패:", err);
-          alert("서버 통신 중 오류가 발생했습니다.");
+          alert("서버 통신 중 오류가 발생했습니다." + err);
         }
       };
       reader.readAsDataURL(blob);
