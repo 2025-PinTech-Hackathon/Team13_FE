@@ -36,10 +36,10 @@ const AccountView = () => {
   ];
 
   return (
-    <main className="pt-[64px] w-[480px] min-h-screen flex flex-col items-center">
+    <main className="pt-[64px] w-full min-h-screen flex flex-col items-center">
       {/* 입출금 계좌 박스 */}
-      <section className="flex flex-col items-center mb-[44px]">
-        <div className="w-[432px] h-[226px] rounded-[10px] border border-main bg-bg">
+      <section className="flex flex-col items-center mb-[44px] w-full">
+        <div className="w-[90%] h-[226px] rounded-[10px] border border-main bg-bg">
           <div className="w-full h-[56px] rounded-t-[10px] rounded-b-none bg-main flex items-center">
             <p className="Pr_Re_20 text-txt-black ml-[16px]">입출금 계좌</p>
           </div>
@@ -64,7 +64,7 @@ const AccountView = () => {
         </div>
       </section>
 
-      <section className="w-[432px]">
+      <section className="w-[90%]">
         <div className="flex">
           <p className="Pr_SB_20">5월</p>
           <p className="Pr_Re_20">&nbsp;거래내역</p>
