@@ -7,11 +7,11 @@ import MyAccount from "./pages/MyAccount";
 import SendMoneyCamera from "./pages/SendMoneyCamera";
 import TransferConfirm from "./pages/TransferConfirm";
 import Password from "./pages/Password";
-// import AR from "./pages/AR";
-// import Loading from "./pages/Loading";
+import AR from "./pages/AR";
+import SendMoneyLoading from "./pages/SendMoneyLoading";
 
 import "./styles/fonts.css";
-
+import Loading from "./pages/Loading";
 
 function App() {
   return (
@@ -19,17 +19,23 @@ function App() {
       <div className="flex flex-col items-center justify-center min-h-screen">
         <Routes>
           <Route path="/" element={<DefaultLayout />}>
-            {/* <Route index element={<Landing />} /> */}
+            <Route index element={<Landing />} />
             {/* <Route index element={<SendMoneyCamera />} /> */}
-            <Route index element={<TransferConfirm />} />
-            {/* <Route path="/ar" element={<AR />} /> */}
-            {/* <Route path="/loading" element={<Loading />} /> */}
+            {/* <Route index element={<TransferConfirm />} /> */}
+            <Route path="/ar" element={<AR />} />
+            <Route path="/send_money_loading" element={<SendMoneyLoading />} />
+            <Route path="/confirm" element={<TransferConfirm />} />
+            <Route path="/password" element={<Password />} />
+            {/* <Route index element={<SendMoneyCamera />} /> */}
+
+            <Route path="/loading" element={<Loading />} />
+
           </Route>
 
-            {/* 돈 송금하기 */}
+          {/* 돈 송금하기 */}
           <Route path="/send_money" element={<SendMoney />}></Route>
 
-            {/* 내 계좌 보기 */}
+          {/* 내 계좌 보기 */}
           <Route path="/my_account" element={<MyAccount />}></Route>
 
             {/* 송금 컨펌 페이지 */}
@@ -37,9 +43,10 @@ function App() {
 
           {/* 송금 비밀번호 입력 */}
           <Route path="/password" element={<Password />}></Route>
+
         </Routes>
       </div>
-    </Router> 
+    </Router>
   );
 }
 

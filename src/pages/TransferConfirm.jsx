@@ -1,24 +1,26 @@
 // src/pages/TransferConfirm.jsx
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowDownIcon } from '@heroicons/react/24/outline';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowDownIcon } from "@heroicons/react/24/outline";
+
+import BottomBtn from "../components/BottomBtn";
 
 const TransferConfirm = () => {
-  const navigate = useNavigate();
   const accountName = "내돈";
-  const accountNumber = '000000-00-000000';
-  const balance = '100,000원';
-  const bankNameLines = ['머니', '은행'];
-  const recipient = '박희영';
+  const accountNumber = "000000-00-000000";
+  const balance = "100,000원";
+  const bankNameLines = ["머니", "은행"];
+  const recipient = "박희영";
   const amount = 56700;
 
   return (
-    <main className="relative w-[480px] h-[1000px] mx-auto flex flex-col justify-center items-center px-5 py-8">
-
+    <main className="relative w-[480px] h-screen mx-auto flex flex-col justify-center items-center px-5 py-8">
       {/* 상단: 계좌 정보 */}
       <div className="flex flex-col items-center space-y-2 ">
         <div className="bg-gray1 rounded-[13px] w-[303px] h-[56px] flex justify-center items-center">
-          <span className="w-full text-txt-black font-medium flex justify-center Pr_Re_24"><b className="font-semibold mr-2">{accountName}</b> {accountNumber}</span>
+          <span className="w-full text-txt-black font-medium flex justify-center Pr_Re_24">
+            <b className="font-semibold mr-2">{accountName}</b> {accountNumber}
+          </span>
         </div>
         <p className="text-sm text-txt-black self-start ml-1 Pr_Re_16">현재 잔액: {balance}</p>
       </div>
@@ -36,7 +38,9 @@ const TransferConfirm = () => {
         </div>
 
         <div className="text-center space-y-1">
-          <p className="text-lg text-txt-black Pr_Re_28"><b className="Pr_SB_28">{recipient}</b> 님께</p>
+          <p className="text-lg text-txt-black Pr_Re_28">
+            <b className="Pr_SB_28">{recipient}</b> 님께
+          </p>
           <p className="text-txt-black Pr_Re_28">
             <b className="Pr_SB_28">{amount.toLocaleString()}원</b> 을 보냅니다.
           </p>
@@ -62,6 +66,8 @@ const TransferConfirm = () => {
           확인
         </button>
       </div>
+
+      <BottomBtn prevRoute="/ar" nextRoute="/password" />
     </main>
   );
 };

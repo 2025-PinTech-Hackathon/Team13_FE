@@ -1,7 +1,9 @@
 import { useRef, useState } from "react";
 import Webcam from "react-webcam";
 
-import react from "./../assets/react.svg";
+import cameraButton from "./../assets/camera_button.png";
+import sendMoneyAr from "./../assets/send_money_ar.png";
+import { useNavigate } from "react-router-dom";
 
 function AR() {
   const webcamRef = useRef(null);
@@ -9,6 +11,8 @@ function AR() {
   const [capturedImage, setCapturedImage] = useState(null);
 
   const [fullPhoto, setFullPhoto] = useState(null);
+
+  const navigate = useNavigate();
 
   const MAX_WIDTH = 16320;
   const MAX_HEIGHT = 12240;
@@ -18,8 +22,8 @@ function AR() {
     // height: 480,
     width: { ideal: MAX_WIDTH },
     height: { ideal: MAX_HEIGHT },
-    facingMode: "user", // <- 테스트용 전면 카메라
-    // facingMode: "environment", // <- 후면 카메라 고정
+    // facingMode: "user", // <- 테스트용 전면 카메라/
+    facingMode: "environment", // <- 후면 카메라 고정
   };
 
   // 풀 해상도 촬영
@@ -64,10 +68,10 @@ function AR() {
   };
 
   return (
-    <main>
-      <div className="w-full h-screen" style={{ position: "relative" }}>
+    <main className="w-full h-screen">
+      <div className="w-full h-full" style={{ position: "relative" }}>
         {isCameraOn && !capturedImage && !fullPhoto && (
-          <>
+          <div className="flex justify-center items-center w-full h-full">
             <Webcam
               audio={false}
               ref={webcamRef}
@@ -87,43 +91,19 @@ function AR() {
                 bottom: 0,
               }}
             />
-            <img
-              src={react}
-              alt="react"
-              style={{
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                width: "100px",
-                zIndex: 1000,
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
+            <img className="relative h-[100%] z-10" src={sendMoneyAr} alt="sendMoneyAr" />
+            <button
+              className="absolute bottom-[36px] right-1/2 translate-x-1/2 cursor-pointer z-20"
+              onClick={() => {
+                if (isCameraOn) {
+                  navigate("/confirm");
+                  takeFullPhoto();
+                }
               }}
-            />
-          </>
-        )}
-        {(capturedImage || fullPhoto) && (
-          <div className="captured-image">
-            <img src={fullPhoto || capturedImage} alt="캡처된 이미지" />
+            >
+              <img className="size-[72px] rotate-90" src={cameraButton} alt="cameraButton" />
+            </button>
           </div>
-        )}
-      </div>
-      <div className="button-container">
-        <button onClick={() => setIsCameraOn(!isCameraOn)} className="camera-toggle">
-          {isCameraOn ? "카메라 끄기" : "카메라 켜기"}
-        </button>
-        {isCameraOn && (
-          <>
-            <button onClick={capture} className="capture-button">
-              기본 캡처
-            </button>
-            <button onClick={takeFullPhoto} className="capture-button">
-              풀 해상도 촬영
-            </button>
-          </>
         )}
       </div>
     </main>
