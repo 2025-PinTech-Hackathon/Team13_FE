@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import BankLogo from "../components/BankLogo";
 import ScrollDownAnimation from "../components/ScrollDownAnimation";
+import { parseBankName } from "../utils/parseBankName";
 
 const AccountView = () => {
   const location = useLocation();
@@ -23,6 +24,8 @@ const AccountView = () => {
     { type: "입금", date: "2025.05.07 09:00", amount: 30000, balance: 100000 },
   ];
 
+  const bankName = parseBankName(bank);
+
   return (
     <main className="pt-[64px] w-full min-h-screen flex flex-col items-center">
       {/* 입출금 계좌 박스 */}
@@ -38,8 +41,8 @@ const AccountView = () => {
               <div className="">
                 <p className="Pr_Re_16 text-txt-gray-1">최준혁</p>
                 <div className="flex">
-                  <p className="Pr_SB_20">내돈은행&nbsp;</p>
-                  <p className="Pr_Re_20">000000-00-000000</p>
+                  <p className="Pr_SB_20">{bankName.korean}&nbsp;</p>
+                  <p className="Pr_Re_20">153-91059-7014-07</p>
                 </div>
               </div>
             </div>
