@@ -1,13 +1,12 @@
 // src/pages/Landing.jsx
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
-  const navigate = useNavigate();  // 컴포넌트 본문 안에서 훅을 호출
+  const navigate = useNavigate(); // 컴포넌트 본문 안에서 훅을 호출
 
   return (
     <main className="w-[480px] h-[1080px] mx-auto flex flex-col items-center justify-center bg-bg px-5">
-
       {/* Logo */}
       <div className="relative mb-10 flex justify-center">
         <h1 className="text-[28px] leading-[42px] font-semibold tracking-[-0.308px] text-txt-black">
@@ -29,13 +28,13 @@ const Landing = () => {
       <div className="w-full max-w-[360px] space-y-3">
         <button
           className="w-full h-[50px] bg-main rounded-lg flex items-center justify-center text-[20px] leading-[30px] font-semibold tracking-[-0.22px] text-txt-black"
-          onClick={() => navigate('/send_money')}
+          onClick={() => navigate("/ar")}
         >
           돈 송금하기
         </button>
         <button
           className="w-full h-[50px] bg-gray2 border border-[#E0E0E0] rounded-lg flex items-center justify-center text-[20px] leading-[30px] font-semibold tracking-[-0.22px] text-txt-black"
-          onClick={() => navigate('/my_account')}
+          onClick={() => navigate("/my_account")}
         >
           내 계좌 보기
         </button>
