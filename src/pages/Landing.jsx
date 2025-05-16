@@ -7,7 +7,7 @@ const Landing = () => {
   const navigate = useNavigate(); // 컴포넌트 본문 안에서 훅을 호출
 
   return (
-    <main className="w-[480px] h-screen mx-auto flex flex-col items-center justify-center bg-bg px-5">
+    <main className="w-full min-h-screen mx-auto flex flex-col items-center justify-center bg-bg px-5">
       {/* Logo */}
       <div className="relative mb-10 flex justify-center">
         <img src={logo} alt="로고" className="w-[180px] h-[90px] object-contain mb-20" />
