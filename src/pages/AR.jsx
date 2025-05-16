@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
+import { OpenAI } from "openai";
 
 import cameraButton from "./../assets/camera_button.png";
 import sendMoneyAr from "./../assets/send_money_ar.png";
