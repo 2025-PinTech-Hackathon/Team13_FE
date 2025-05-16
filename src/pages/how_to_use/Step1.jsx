@@ -20,14 +20,16 @@ const Step1 = () => {
     <main className="w-full min-h-screen flex flex-col justify-center pl-[6.66666666666667%] pr-[5%]">
       {/* 상단 */}
       <div className="flex flex-col mt-[-100px]">
-        <div className="flex justify-between">
+        <div className="flex justify-end pr-[10px]">
+            <button
+                className="w-[98px] h-[56px] p-2 rounded-[12px] text-txt-gray-2 Pr_SB_20"
+                onClick={() => navigate("/")}
+            >
+                취소
+            </button>
+        </div>
+        <div className="flex mb-5">
           <p className="text-txt-black Pr_SB_28">송금 보내는 방법</p>
-          <button
-            className="w-[98px] h-[56px] p-2 rounded-[12px] border border-gray1 bg-bg text-txt-gray-2 Pr_SB_20"
-            onClick={() => navigate("/")}
-          >
-            취소
-          </button>
         </div>
         <div>
           <p className="text-txt-black Pr_Re_20">

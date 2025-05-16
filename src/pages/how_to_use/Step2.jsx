@@ -7,16 +7,18 @@ const Step2 = () => {
   return (
     <main className="w-full min-h-screen flex flex-col justify-center pl-[6.66666666666667%] pr-[5%]">
       {/* 상단 */}
-      <div className="flex flex-col mt-[-100px]">
-        <div className="flex justify-between">
-          <p className="text-txt-black Pr_SB_28">송금 보내는 방법</p>
-          <button
-            className="w-[98px] h-[56px] p-2 rounded-[12px] border border-gray1 bg-bg text-txt-gray-2 Pr_SB_20"
-            onClick={() => navigate("/")}
-          >
-            취소
-          </button>
-        </div>
+        <div className="flex flex-col mt-[-100px]">
+            <div className="flex justify-end pr-[10px]">
+                <button
+                    className="w-[98px] h-[56px] p-2 rounded-[12px] text-txt-gray-2 Pr_SB_20"
+                    onClick={() => navigate("/")}
+                >
+                    취소
+                </button>
+            </div>
+            <div className="flex mb-5">
+                <p className="text-txt-black Pr_SB_28">송금 보내는 방법</p>
+            </div>
         <div>
           <p className="text-txt-black Pr_Re_20">
             정보를 다 적으셨으면, 카메라 화면을 보고 <br /> 위치를 맞추어 촬영해 주세요.
