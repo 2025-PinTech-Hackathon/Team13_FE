@@ -28,32 +28,30 @@ function AR() {
   };
 
   useEffect(() => {
-    const checkOrientation = () => {
-      if (window.screen.orientation) {
-        // screen.orientation API 사용
-        const orientation = window.screen.orientation.type;
-        setIsPortrait(orientation.includes("portrait"));
-      } else {
-        // fallback: window.orientation 사용
-        const orientation = window.orientation;
-        setIsPortrait(orientation === 0 || orientation === 180);
-      }
-    };
+    // 1) matchMedia 객체 생성
+    const mql = window.matchMedia("(orientation: portrait)");
 
-    checkOrientation();
+    // 2) 콜백: matches 가 true면 세로, false면 가로
+    const onChange = (e) => setIsPortrait(e.matches);
 
-    window.addEventListener("orientationchange", checkOrientation);
-    window.addEventListener("resize", checkOrientation);
+    // 3) 초기 상태 설정
+    setIsPortrait(mql.matches);
 
-    const intervalId = setInterval(checkOrientation, 1000);
+    // 4) 이벤트 리스너 등록 (최신 브라우저와 레거시 대응)
+    if (typeof mql.addEventListener === "function") {
+      mql.addEventListener("change", onChange);
+    } else {
+      mql.addListener(onChange);
+    }
 
     return () => {
-      window.removeEventListener("orientationchange", checkOrientation);
-      window.removeEventListener("resize", checkOrientation);
-      clearInterval(intervalId);
+      if (typeof mql.removeEventListener === "function") {
+        mql.removeEventListener("change", onChange);
+      } else {
+        mql.removeListener(onChange);
+      }
     };
   }, []);
-
   // 풀 해상도 촬영
   const takeFullPhoto = async () => {
     if (!webcamRef.current?.stream) return;
