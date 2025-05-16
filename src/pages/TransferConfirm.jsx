@@ -48,7 +48,7 @@ const TransferConfirm = () => {
       </div>
 
       {/* 하단: 취소 / 확인 버튼 */}
-      <div className="fixed bottom-0 left-0 w-full flex">
+      <div className="absolute bottom-0 left-0 w-full flex">
         <button
           className="flex-1 h-[80px] bg-gray2 text-txt-black Pr_SB_20 pt-1"
           onClick={() => {/* 이전 라우터 */}}
