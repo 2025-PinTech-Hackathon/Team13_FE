@@ -1,5 +1,5 @@
 // src/pages/Password.jsx
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { XMarkIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import PasswordBtn from "../components/PasswordBtn";
@@ -9,6 +9,12 @@ const Password = () => {
   const [pin, setPin] = useState("");
   const [attempts, setAttempts] = useState(0);
   const CORRECT_PIN = "1234";
+
+  // 랜덤하게 섞인 숫자 배열 생성
+  const shuffledNumbers = useMemo(() => {
+    const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+    return numbers.sort(() => Math.random() - 0.5);
+  }, []);
 
   const isLocked = attempts >= 5; // 5회 초과 시 잠금
 
@@ -104,7 +110,7 @@ const Password = () => {
       <div className="px-5">
         <div className="grid grid-cols-4 gap-0 divide-x divide-y divide-gray2 border border-gray2 ">
           {/* 1행: 1,2,3 */}
-          {["1", "2", "3"].map((d) => (
+          {shuffledNumbers.slice(0, 3).map((d) => (
             <PasswordBtn key={d} d={d} pressNumber={pressNumber} />
           ))}
 
@@ -127,18 +133,18 @@ const Password = () => {
           </div>
 
           {/* 2행: 4,5,6 */}
-          {["4", "5", "6"].map((d) => (
+          {shuffledNumbers.slice(3, 6).map((d) => (
             <PasswordBtn key={d} d={d} pressNumber={pressNumber} />
           ))}
 
           {/* 3행: 7,8,9 */}
-          {["7", "8", "9"].map((d) => (
+          {shuffledNumbers.slice(6, 9).map((d) => (
             <PasswordBtn key={d} d={d} pressNumber={pressNumber} />
           ))}
 
           {/* 4행: 빈, 0, 빈 */}
           <div className="w-[104px] h-[104px] bg-white" />
-          <PasswordBtn key={0} d={0} pressNumber={pressNumber} />
+          <PasswordBtn key={shuffledNumbers[9]} d={shuffledNumbers[9]} pressNumber={pressNumber} />
           <div className="w-[104px] h-[104px] bg-white" />
         </div>
       </div>
