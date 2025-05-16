@@ -139,7 +139,7 @@ function AR3() {
               onClick={async () => {
                 if (isCameraOn) {
                   await takeFullPhoto();
-                  navigate("/confirm");
+                  navigate("/chat");
                 }
               }}
             >
