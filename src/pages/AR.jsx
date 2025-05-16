@@ -26,6 +26,7 @@ function AR() {
     width: { ideal: MAX_WIDTH },
     height: { ideal: MAX_HEIGHT },
     facingMode: "environment",
+    // facingMode: "user",
   };
 
   // 촬영 → OCR → DB 저장 → Confirm 이동
@@ -92,7 +93,7 @@ function AR() {
           }
         } catch (err) {
           console.error("API 호출 실패:", err);
-          alert("서버 통신 중 오류가 발생했습니다." + err);
+          alert(err.response.data.message);
         }
       };
       reader.readAsDataURL(blob);
