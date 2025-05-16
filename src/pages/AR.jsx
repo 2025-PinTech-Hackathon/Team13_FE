@@ -84,7 +84,7 @@ function AR() {
         console.log(parsed);
         // 3) DB 저장
         try {
-          const res = await axios.post("https://54.180.93.45:5000/api/upload", {
+          const res = await axios.post("http://43.201.106.129:5000/api/upload", {
             Left: parsed.Left,
           });
           if (res.data.status === "success") {
