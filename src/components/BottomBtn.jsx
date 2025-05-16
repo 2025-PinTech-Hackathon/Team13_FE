@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const BottomBtn = ({ prevRoute, nextRoute, leftText = "취소", rightText = "확인", ...props}) => {
+const BottomBtn = ({ prevRoute, nextRoute, leftText = "취소", rightText = "확인", ...props }) => {
   const navigate = useNavigate();
 
   return (

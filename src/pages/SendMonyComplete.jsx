@@ -1,7 +1,30 @@
+import { useLocation } from "react-router-dom";
 import ic_check from "../assets/ic_check.svg";
 import BottomBtn from "../components/BottomBtn";
+import { parseBankName } from "../utils/parseBankName";
 
 const SendMonyComplete = () => {
+  const location = useLocation();
+  const { response } = location.state || {};
+
+  // 3) 구조 분해 할당
+  const { Left, Right } = response;
+  const {
+    bank: senderBank,
+    account_number: senderAccountNumber,
+    name: senderName,
+    amount: senderAmountRaw,
+  } = Left;
+  const {
+    bank: receiveBank,
+    account_number: receiveAccountNumber,
+    name: recipientName,
+    amount: recipientAmountRaw,
+  } = Right;
+
+  const senderBankName = parseBankName(senderBank);
+  const recipientBankName = parseBankName(receiveBank);
+
   return (
     <main className="flex flex-col justify-center items-center w-full min-h-screen">
       <img src={ic_check} alt="ic_check" />
@@ -20,19 +43,19 @@ const SendMonyComplete = () => {
 
           <div className="flex justify-between mt-[23px]">
             <p className="Pr_Re_20 text-txt-gray-2">예금주</p>
-            <p className="Pr_SB_28">박희영</p>
+            <p className="Pr_SB_28">{recipientName}</p>
           </div>
 
           <div className="flex justify-between mt-[23px]">
             <p className="Pr_Re_20 text-txt-gray-2">송금액</p>
-            <p className="Pr_SB_28">56,700원</p>
+            <p className="Pr_SB_28">{senderAmountRaw.toLocaleString()}원</p>
           </div>
 
           <div className="flex justify-between items-center mt-[26px]">
             <p className="Pr_Re_20 text-txt-gray-2">송금 계좌</p>
             <div className="flex gap-[4px]">
-              <p className="Pr_SB_20">머니</p>
-              <p className="Pr_Re_20">1234-5678-9012-3456</p>
+              <p className="Pr_SB_20">{recipientBankName.korean}</p>
+              <p className="Pr_Re_20">{receiveAccountNumber}</p>
             </div>
           </div>
         </div>
@@ -42,8 +65,8 @@ const SendMonyComplete = () => {
         <div className="flex justify-between items-center">
           <p className="Pr_Re_20 text-txt-gray-2">출금 계좌</p>
           <div className="flex gap-[4px]">
-            <p className="Pr_SB_20">머니</p>
-            <p className="Pr_Re_20">1234-5678-9012-3456</p>
+            <p className="Pr_SB_20">{senderBankName.korean}</p>
+            <p className="Pr_Re_20">{senderAccountNumber}</p>
           </div>
         </div>
 

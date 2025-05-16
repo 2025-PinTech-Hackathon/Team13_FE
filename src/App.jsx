@@ -38,11 +38,11 @@ function App() {
             <Route path="/step3" element={<Step3 />} />
             <Route path="/step4" element={<Step4 />} />
 
-            <Route path="/ar" element={<AR />} />
-            <Route path="/ar2" element={<AR2 />} />
+            <Route path="/ar" element={<AR3 />} />
+            <Route path="/ar2" element={<AR3 />} />
             <Route path="/ar3" element={<AR3 />} />
             <Route path="/send_money_loading" element={<SendMoneyLoading />} />
-            <Route path="/confirm" element={<TransferConfirm />} />
+            <Route path="/confirm" element={<TransferConfirm2 />} />
             <Route path="/confirm2" element={<TransferConfirm2 />} />
             <Route path="/password" element={<Password />} />
             <Route path="/send_complete" element={<SendMoneyComplete />} />

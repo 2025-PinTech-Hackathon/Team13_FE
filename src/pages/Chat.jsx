@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { OpenAI } from "openai";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
 
 function Chat() {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [response, setResponse] = useState("");
+  const [aiResponse, setAiResponse] = useState("");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -67,32 +67,8 @@ function Chat() {
       }
 
       const analysisResult = response.choices[0].message.content;
-      setResponse(analysisResult);
-
-      // 서버에 결과 저장
-      try {
-        console.log("서버에 저장 요청 시작:", analysisResult); // 저장 요청 시작 로깅
-        const saveResponse = await fetch("http://localhost:5000/save-analysis", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            response: analysisResult,
-          }),
-        });
-
-        const saveResult = await saveResponse.json();
-        console.log("서버 저장 응답:", saveResult); // 서버 응답 로깅
-
-        if (!saveResult.success) {
-          console.error("결과 저장 실패:", saveResult.message);
-        } else {
-          console.log("결과 저장 성공:", saveResult.filename);
-        }
-      } catch (saveError) {
-        console.error("결과 저장 중 오류:", saveError);
-      }
+      setAiResponse(analysisResult);
+      console.log("A: ", aiResponse);
     } catch (error) {
       console.error("API Error Details:", {
         message: error.message,
@@ -107,10 +83,16 @@ function Chat() {
 
       alert(`API 호출 중 오류가 발생했습니다: ${error.message}`);
     } finally {
-      navigate("/confirm2", { state: { response: response } });
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (aiResponse) {
+      console.log("B:", aiResponse);
+      navigate("/confirm2", { state: { response: aiResponse } });
+    }
+  }, [aiResponse]);
 
   if (loading) {
     return <Loading />;
@@ -142,10 +124,10 @@ function Chat() {
         {loading ? "분석 중..." : "분석하기"}
       </button>
 
-      {response && (
+      {aiResponse && (
         <div className="response-section" style={{ marginTop: "20px" }}>
           <h3>분석 결과:</h3>
-          <p>{response}</p>
+          <p>{aiResponse}</p>
         </div>
       )}
     </div>

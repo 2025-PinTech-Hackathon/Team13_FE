@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import BankLogo from "../components/BankLogo";
 import BottomBtn from "../components/BottomBtn";
+import { parseBankName } from "../utils/parseBankName";
 
 const TransferConfirm2 = () => {
   const navigate = useNavigate();
@@ -20,7 +21,9 @@ const TransferConfirm2 = () => {
   // 2) parsed가 없으면 AR 페이지로 복귀
   useEffect(() => {
     if (!parsed) {
-      navigate("/ar");
+      console.log(response);
+      console.log(parsed);
+      navigate("/ar3");
     }
   }, [parsed, navigate]);
 
@@ -47,11 +50,16 @@ const TransferConfirm2 = () => {
   const senderAmount = parseFloat(senderAmountRaw) || 0;
   const recipientAmount = parseFloat(recipientAmountRaw) || 0;
 
+  const senderBankName = parseBankName(senderBank);
+  const recipientBankName = parseBankName(receiveBank);
+
+  console.log(senderBankName);
+  console.log(recipientBankName);
   return (
     <main className="relative w-full h-screen mx-auto flex flex-col justify-center items-center px-5 py-8">
       {/* 상단: 보내는 사람 계좌 정보 */}
       <div className="flex items-center gap-[12px] space-y-2">
-        <BankLogo bank={senderBank} size={64} />
+        <BankLogo bank={senderBankName.english} size={64} />
         <div>
           <div className="bg-gray2 rounded-[13px] w-[303px] h-[56px] flex justify-center items-center">
             <span className="w-full text-txt-black font-medium flex justify-center Pr_Re_24">
@@ -59,9 +67,7 @@ const TransferConfirm2 = () => {
               {senderAccountNumber}
             </span>
           </div>
-          <p className="text-sm text-txt-black self-start ml-1 Pr_Re_16">
-            현재 잔액: {senderAmount.toLocaleString()}원
-          </p>
+          <p className="text-sm text-txt-black self-start ml-1 Pr_Re_16">현재 잔액: 43,000원</p>
         </div>
       </div>
 
@@ -70,7 +76,7 @@ const TransferConfirm2 = () => {
         <ArrowDownIcon className="w-8 h-8 text-txt-black" strokeWidth={3} />
 
         <div className="w-[88px] h-[88px] bg-gray1 rounded-full flex flex-col items-center justify-center">
-          <BankLogo bank={receiveBank} size={88} />
+          <BankLogo bank={recipientBankName.english} size={88} />
         </div>
 
         <div className="text-center space-y-1">
@@ -78,7 +84,7 @@ const TransferConfirm2 = () => {
             <b className="Pr_SB_28">{recipientName}</b> 님께
           </p>
           <p className="text-txt-black Pr_Re_28">
-            <b className="Pr_SB_28">{recipientAmount.toLocaleString()}원</b> 을 보냅니다.
+            <b className="Pr_SB_28">{senderAmount.toLocaleString()}원</b> 을 보냅니다.
           </p>
         </div>
 
@@ -87,7 +93,22 @@ const TransferConfirm2 = () => {
         </p>
       </div>
 
-      <BottomBtn prevRoute="/ar" nextRoute="/password" />
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full flex max-w-[480px]">
+        <button
+          className="flex-1 h-[80px] bg-gray2 text-txt-black Pr_SB_20 pt-1"
+          onClick={() => {
+            navigate("/ar");
+          }}
+        >
+          취소
+        </button>
+        <button
+          className="flex-1 h-[80px] bg-main text-txt-black Pr_SB_20 pt-1"
+          onClick={() => navigate("/password", { state: { response: parsed } })}
+        >
+          확인
+        </button>
+      </div>
     </main>
   );
 };

@@ -1,6 +1,6 @@
 // src/pages/Password.jsx
 import React, { useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { XMarkIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import PasswordBtn from "../components/PasswordBtn";
 
@@ -9,6 +9,9 @@ const Password = () => {
   const [pin, setPin] = useState("");
   const [attempts, setAttempts] = useState(0);
   const CORRECT_PIN = "1234";
+
+  const location = useLocation();
+  const { response } = location.state || {};
 
   // 랜덤하게 섞인 숫자 배열 생성
   const shuffledNumbers = useMemo(() => {
@@ -44,7 +47,7 @@ const Password = () => {
     }
     if (pin === CORRECT_PIN) {
       // 다음 스텝으로 이동
-      navigate("/send_complete");
+      navigate("/send_complete", { state: { response: response } });
     } else {
       setAttempts((prev) => prev + 1); // 틀릴 때마다 카운트
       setPin("");
