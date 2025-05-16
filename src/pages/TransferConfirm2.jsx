@@ -4,6 +4,27 @@ import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import BankLogo from "../components/BankLogo";
 import BottomBtn from "../components/BottomBtn";
 import { parseBankName } from "../utils/parseBankName";
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+});
+
+const translateToKorean = async (text) => {
+  const completion = await openai.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [
+      {
+        role: "system",
+        content:
+          "다음 사람 이름을 자연스러운 한국어 발음으로만 번역하세요. 예: “Kim Minji” → “김민지”",
+      },
+      { role: "user", content: text },
+    ],
+    temperature: 0.1,
+  });
+  return completion.choices[0].message.content.trim();
+};
 
 const TransferConfirm2 = () => {
   const navigate = useNavigate();
@@ -53,6 +74,19 @@ const TransferConfirm2 = () => {
   const senderBankName = parseBankName(senderBank);
   const recipientBankName = parseBankName(receiveBank);
 
+  // **이름 번역 상태 관리**
+  const [senderNameKr, setSenderNameKr] = useState(senderName);
+  const [recipientNameKr, setRecipientNameKr] = useState(recipientName);
+
+  useEffect(() => {
+    // 처음 마운트 시 한 번만 번역
+    translateToKorean(senderName).then(setSenderNameKr);
+    translateToKorean(recipientName).then(setRecipientNameKr);
+
+    Left.name = senderNameKr;
+    Right.name = recipientNameKr;
+  }, [senderName, recipientName]);
+
   console.log(senderBankName);
   console.log(recipientBankName);
   return (
@@ -63,7 +97,7 @@ const TransferConfirm2 = () => {
         <div>
           <div className="bg-gray2 rounded-[13px] w-[303px] h-[56px] flex justify-center items-center">
             <span className="w-full text-txt-black font-medium flex justify-center Pr_Re_24">
-              <b className="font-semibold mr-2">{senderName}</b>
+              <b className="font-semibold mr-2">{senderNameKr}</b>
               {senderAccountNumber}
             </span>
           </div>
@@ -81,7 +115,7 @@ const TransferConfirm2 = () => {
 
         <div className="text-center space-y-1">
           <p className="text-lg text-txt-black Pr_Re_28">
-            <b className="Pr_SB_28">{recipientName}</b> 님께
+            <b className="Pr_SB_28">{recipientNameKr}</b> 님께
           </p>
           <p className="text-txt-black Pr_Re_28">
             <b className="Pr_SB_28">{senderAmount.toLocaleString()}원</b> 을 보냅니다.
