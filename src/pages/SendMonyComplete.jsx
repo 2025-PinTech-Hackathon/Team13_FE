@@ -3,7 +3,7 @@ import BottomBtn from "../components/BottomBtn";
 
 const SendMonyComplete = () => {
   return (
-    <main className="flex flex-col justify-center items-center w-full h-screen">
+    <main className="flex flex-col justify-center items-center w-full min-h-screen">
       <img src={ic_check} alt="ic_check" />
       <p className="mt-[17px] mb-[13px] Pr_SB_28">송금이 완료되었습니다.</p>
       <p className="mb-[57px] Pr_Re_20 text-txt-gray-2">아래 내용을 확인해주세요.</p>
@@ -30,7 +30,7 @@ const SendMonyComplete = () => {
 
           <div className="flex justify-between items-center mt-[26px]">
             <p className="Pr_Re_20 text-txt-gray-2">송금 계좌</p>
-            <div className="flex">
+            <div className="flex gap-[4px]">
               <p className="Pr_SB_20">머니</p>
               <p className="Pr_Re_20">1234-5678-9012-3456</p>
             </div>
@@ -41,7 +41,7 @@ const SendMonyComplete = () => {
       <div className="mt-[112px] mb-[24px] w-[90%]">
         <div className="flex justify-between items-center">
           <p className="Pr_Re_20 text-txt-gray-2">출금 계좌</p>
-          <div className="flex">
+          <div className="flex gap-[4px]">
             <p className="Pr_SB_20">머니</p>
             <p className="Pr_Re_20">1234-5678-9012-3456</p>
           </div>
