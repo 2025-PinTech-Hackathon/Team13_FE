@@ -9,26 +9,40 @@ const Password = () => {
   const [attempts, setAttempts] = useState(0);
   const CORRECT_PIN = '1234';
 
+  const isLocked = attempts >= 5;                     // 5회 초과 시 잠금
+
   const pressNumber = (num) => {
+    if (isLocked) return;                             // 잠긴 경우 입력 금지
     if (pin.length < 4) setPin(prev => prev + num);
   };
-  const clearAll = () => setPin('');
-  const backspace = () => setPin(prev => prev.slice(0, -1));
+
+  const clearAll = () => {
+    if (isLocked) return;
+    setPin('');
+  };
+
+  const backspace = () => {
+    if (isLocked) return;
+    setPin(prev => prev.slice(0, -1));
+  };
 
   const handleConfirm = () => {
-    if (pin.length < 4) {
-      alert('비밀번호 4자리를 모두 입력해주세요.');
-      return;
-    }
-    if (pin === CORRECT_PIN) {
-
-        // 여기 채워주세용
-      navigate('/');
-    } else {
-      alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
-      setPin('');
-      setAttempts(prev => prev + 1);
-    }
+    if (isLocked) {
+        alert('비밀번호 입력이 잠겼습니다.\n고객센터에 문의하세요.');
+        return;
+      }
+      if (pin.length < 4) {
+        alert('비밀번호 4자리를 모두 입력해주세요.');
+        return;
+      }
+      if (pin === CORRECT_PIN) {
+        // 다음 스텝으로 이동
+        navigate('/');
+      } else {
+        setAttempts(prev => prev + 1);                   // 틀릴 때마다 카운트
+        setPin('');
+        alert(`비밀번호가 일치하지 않습니다.\n남은 시도 횟수: ${Math.max(0, 5 - (attempts + 1))}회`);
+      }
   };
 
   return (
@@ -75,7 +89,7 @@ const Password = () => {
 
       {/* 시도 횟수 표시 */}
       <p className="text-center text-sm text-txt-gray-2">
-        비밀번호 입력 횟수 {attempts}/5
+      비밀번호 입력 횟수 {attempts}/5 {isLocked && '(입력 잠금)'}
       </p>
 
       {/* 키패드 + 취소/정정 */}
