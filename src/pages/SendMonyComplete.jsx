@@ -56,7 +56,7 @@ const SendMonyComplete = () => {
         </div>
       </div>
 
-      <BottomBtn leftText="내 통장 보기" />
+      <BottomBtn leftText="내 통장 보기" to="/account_view" />
     </main>
   );
 };

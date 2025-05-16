@@ -13,6 +13,7 @@ import SendMoneyLoading from "./pages/SendMoneyLoading";
 import "./styles/fonts.css";
 import Loading from "./pages/Loading";
 import SendMoneyComplete from "./pages/SendMonyComplete";
+import AcountView from "./pages/AccountView";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/confirm" element={<TransferConfirm />} />
             <Route path="/password" element={<Password />} />
             <Route path="/send_complete" element={<SendMoneyComplete />} />
+            <Route path="/account_view" element={<AcountView />} />
             {/* <Route index element={<SendMoneyCamera />} /> */}
 
             <Route path="/loading" element={<Loading />} />
