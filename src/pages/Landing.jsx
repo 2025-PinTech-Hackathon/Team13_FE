@@ -33,7 +33,7 @@ const Landing = () => {
         </button>
         <button
           className="w-full h-[50px] bg-gray2 border border-[#E0E0E0] rounded-lg flex items-center justify-center text-[20px] leading-[30px] font-semibold tracking-[-0.22px] text-txt-black"
-          onClick={() => navigate("/my_account")}
+          onClick={() => navigate("/account_view")}
         >
           내 계좌 보기
         </button>
