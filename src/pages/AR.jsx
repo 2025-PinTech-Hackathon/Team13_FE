@@ -130,16 +130,24 @@ function AR() {
               }}
             />
             <img className="relative h-[100%] z-10" src={sendMoneyAr} alt="sendMoneyAr" />
-            <button
-              className="absolute bottom-[36px] right-1/2 translate-x-1/2 cursor-pointer z-20"
-              onClick={() => {
+            <div
+              className="absolute bottom-[36px] right-1/2 translate-x-1/2 cursor-pointer bg-white rounded-full z-20"
+              onClick={async () => {
                 if (isCameraOn) {
+                  await takeFullPhoto();
                   navigate("/confirm");
-                  takeFullPhoto();
                 }
               }}
             >
               <img className="size-[72px] rotate-90" src={cameraButton} alt="cameraButton" />
+            </div>
+            <button
+              className="absolute bottom-[36px] left-0 bottom-0 w-[98px] h-[56px] bg-gray2 rounded-[12px] cursor-pointer z-20 rotate-90"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              촬영 취소
             </button>
           </div>
         )}
