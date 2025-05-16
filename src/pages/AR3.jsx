@@ -23,8 +23,8 @@ function AR3() {
     // height: 480,
     width: { ideal: MAX_WIDTH },
     height: { ideal: MAX_HEIGHT },
-    facingMode: "user", // <- 테스트용 전면 카메라
-    // facingMode: "environment", // <- 후면 카메라 고정
+    // facingMode: "user", // <- 테스트용 전면 카메라
+    facingMode: "environment", // <- 후면 카메라 고정
   };
 
   /*
