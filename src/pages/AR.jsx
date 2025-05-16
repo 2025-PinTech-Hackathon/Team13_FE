@@ -93,7 +93,7 @@ function AR() {
           }
         } catch (err) {
           console.error("API 호출 실패:", err);
-          alert(err.response.data.message);
+          alert(err.response);
         }
       };
       reader.readAsDataURL(blob);
