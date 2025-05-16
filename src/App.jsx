@@ -15,6 +15,11 @@ import Loading from "./pages/Loading";
 import SendMoneyComplete from "./pages/SendMonyComplete";
 import AcountView from "./pages/AccountView";
 
+import Step1 from "./pages/Step1";
+import Step2 from "./pages/Step2";
+import Step3 from "./pages/Step3";
+import Step4 from "./pages/Step4";
+
 function App() {
   return (
     <Router>
@@ -24,6 +29,11 @@ function App() {
             <Route index element={<Landing />} />
             {/* <Route index element={<SendMoneyCamera />} /> */}
             {/* <Route index element={<TransferConfirm />} /> */}
+            <Route path="/step1" element={<Step1 />} />
+            <Route path="/step2" element={<Step2 />} />
+            <Route path="/step3" element={<Step3 />} />
+            <Route path="/step4" element={<Step4 />} />
+
             <Route path="/ar" element={<AR />} />
             <Route path="/send_money_loading" element={<SendMoneyLoading />} />
             <Route path="/confirm" element={<TransferConfirm />} />
