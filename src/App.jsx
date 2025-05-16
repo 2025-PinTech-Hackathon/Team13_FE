@@ -19,6 +19,7 @@ import Step2 from "./pages/how_to_use/Step2";
 import Step3 from "./pages/how_to_use/Step3";
 import Step4 from "./pages/how_to_use/Step4";
 import MyBankBooks from "./pages/MyBankbooks";
+import AR2 from "./pages/AR2";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/step4" element={<Step4 />} />
 
             <Route path="/ar" element={<AR />} />
+            <Route path="/ar2" element={<AR2 />} />
             <Route path="/send_money_loading" element={<SendMoneyLoading />} />
             <Route path="/confirm" element={<TransferConfirm />} />
             <Route path="/password" element={<Password />} />

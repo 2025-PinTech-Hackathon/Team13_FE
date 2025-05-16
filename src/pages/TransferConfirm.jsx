@@ -1,6 +1,6 @@
 // src/pages/TransferConfirm.jsx
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
 
 import BottomBtn from "../components/BottomBtn";
@@ -8,27 +8,50 @@ import BankLogo from "../components/BankLogo";
 
 const TransferConfirm = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { parsed } = location.state || {};
 
-  const bank = "kakao";
-  const accountName = "카뱅";
-  const accountNumber = "000000-00-000000";
-  const balance = "100,000원";
-  const receiveBank = "shinhan";
-  const recipient = "박희영";
-  const amount = 56700;
+  useEffect(() => {
+    if (!parsed) {
+      // parsed 데이터가 없으면 AR 페이지로 돌아갑니다.
+      navigate("/ar");
+    }
+  }, [parsed, navigate]);
+
+  if (!parsed) {
+    return null;
+  }
+
+  // 왼쪽(보내는 사람) 정보
+  const {
+    bank: senderBank,
+    account_number: senderAccountNumber,
+    name: senderName,
+    amount: senderAmount,
+  } = parsed.Left;
+
+  // 오른쪽(받는 사람) 정보
+  const {
+    bank: receiveBank,
+    account_number: receiveAccountNumber,
+    name: recipient,
+    amount,
+  } = parsed.Right;
 
   return (
     <main className="relative w-full h-screen mx-auto flex flex-col justify-center items-center px-5 py-8">
-      {/* 상단: 계좌 정보 */}
-      <div className="flex items-center gap-[12px] space-y-2 ">
-        <BankLogo bank={bank} size={64} />
+      {/* 상단: 보내는 사람 계좌 정보 */}
+      <div className="flex items-center gap-[12px] space-y-2">
+        <BankLogo bank={senderBank} size={64} />
         <div>
           <div className="bg-gray2 rounded-[13px] w-[303px] h-[56px] flex justify-center items-center">
             <span className="w-full text-txt-black font-medium flex justify-center Pr_Re_24">
-              <b className="font-semibold mr-2">{accountName}</b> {accountNumber}
+              <b className="font-semibold mr-2">{senderName}</b> {senderAccountNumber}
             </span>
           </div>
-          <p className="text-sm text-txt-black self-start ml-1 Pr_Re_16">현재 잔액: {balance}</p>
+          <p className="text-sm text-txt-black self-start ml-1 Pr_Re_16">
+            현재 잔액: {senderAmount.toLocaleString()}원
+          </p>
         </div>
       </div>
 

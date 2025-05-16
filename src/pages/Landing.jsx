@@ -1,10 +1,26 @@
 // src/pages/Landing.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/LOGO.png";
+import axios from "axios";
 
 const Landing = () => {
   const navigate = useNavigate(); // 컴포넌트 본문 안에서 훅을 호출
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://54.180.93.45:5000/api/data");
+        if (response.data.status === "success") {
+          navigate("/step1");
+        }
+        console.log(response.data);
+      } catch (error) {
+        console.error("API 호출 실패:", error);
+      }
+    };
+    fetchData();
+  }, [navigate]);
 
   return (
     <main className="w-full min-h-screen mx-auto flex flex-col items-center justify-center bg-bg px-5">
