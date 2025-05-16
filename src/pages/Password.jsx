@@ -37,7 +37,7 @@ const Password = () => {
       }
       if (pin === CORRECT_PIN) {
         // 다음 스텝으로 이동
-        navigate('/');
+        navigate('/send_complete');
       } else {
         setAttempts(prev => prev + 1);                   // 틀릴 때마다 카운트
         setPin('');
@@ -94,7 +94,7 @@ const Password = () => {
 
       {/* 키패드 + 취소/정정 */}
       <div className="px-5">
-        <div className="grid grid-cols-4 gap-0 divide-x divide-y divide-gray2 border border-gray2 border-r-0">
+        <div className="grid grid-cols-4 gap-0 divide-x divide-y divide-gray2 border border-gray2 ">
           {/* 1행: 1,2,3 */}
           {['1','2','3'].map(d => (
             <button
