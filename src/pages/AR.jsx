@@ -3,6 +3,7 @@ import Webcam from "react-webcam";
 
 import cameraButton from "./../assets/camera_button.png";
 import sendMoneyAr from "./../assets/send_money_ar.png";
+import { useNavigate } from "react-router-dom";
 
 function AR() {
   const webcamRef = useRef(null);
@@ -10,6 +11,8 @@ function AR() {
   const [capturedImage, setCapturedImage] = useState(null);
 
   const [fullPhoto, setFullPhoto] = useState(null);
+
+  const navigate = useNavigate();
 
   const MAX_WIDTH = 16320;
   const MAX_HEIGHT = 12240;
@@ -90,20 +93,16 @@ function AR() {
             />
             <img className="relative h-[100%] z-10" src={sendMoneyAr} alt="sendMoneyAr" />
             <button
-              className="absolute bottom-[36px] right-1/2 translate-x-1/2 cursor-pointer"
+              className="absolute bottom-[36px] right-1/2 translate-x-1/2 cursor-pointer z-20"
               onClick={() => {
                 if (isCameraOn) {
+                  navigate("/confirm");
                   takeFullPhoto();
                 }
               }}
             >
               <img className="size-[72px] rotate-90" src={cameraButton} alt="cameraButton" />
             </button>
-          </div>
-        )}
-        {(capturedImage || fullPhoto) && (
-          <div className="captured-image">
-            <img src={fullPhoto || capturedImage} alt="캡처된 이미지" />
           </div>
         )}
       </div>

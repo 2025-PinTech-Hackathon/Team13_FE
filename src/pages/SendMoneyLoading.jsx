@@ -2,7 +2,7 @@ import { FadeLoader } from "react-spinners";
 
 import mobile_flip from "../assets/mobile_flip.svg";
 
-const Loading = () => {
+const SendMoneyLoading = () => {
   return (
     <main className="flex flex-col justify-center items-center pt-[18.3333%] pb-[11.875%] h-screen">
       <div className="flex justify-center items-center -translate-y-1/4">
@@ -23,4 +23,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default SendMoneyLoading;
