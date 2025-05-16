@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { XMarkIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+import PasswordBtn from "../components/PasswordBtn";
 
 const Password = () => {
   const navigate = useNavigate();
@@ -104,13 +105,7 @@ const Password = () => {
         <div className="grid grid-cols-4 gap-0 divide-x divide-y divide-gray2 border border-gray2 ">
           {/* 1행: 1,2,3 */}
           {["1", "2", "3"].map((d) => (
-            <button
-              key={d}
-              onClick={() => pressNumber(d)}
-              className="w-[104px] h-[104px] bg-bg flex items-center justify-center text-[36px] font-semibold"
-            >
-              {d}
-            </button>
+            <PasswordBtn key={d} d={d} pressNumber={pressNumber} />
           ))}
 
           {/* 오른쪽 열(전체 병합): 취소/정정 */}
@@ -133,34 +128,17 @@ const Password = () => {
 
           {/* 2행: 4,5,6 */}
           {["4", "5", "6"].map((d) => (
-            <button
-              key={d}
-              onClick={() => pressNumber(d)}
-              className="w-[104px] h-[104px] bg-bg flex items-center justify-center text-[36px] font-semibold"
-            >
-              {d}
-            </button>
+            <PasswordBtn key={d} d={d} pressNumber={pressNumber} />
           ))}
 
           {/* 3행: 7,8,9 */}
           {["7", "8", "9"].map((d) => (
-            <button
-              key={d}
-              onClick={() => pressNumber(d)}
-              className="w-[104px] h-[104px] bg-bg flex items-center justify-center text-[36px] font-semibold"
-            >
-              {d}
-            </button>
+            <PasswordBtn key={d} d={d} pressNumber={pressNumber} />
           ))}
 
           {/* 4행: 빈, 0, 빈 */}
           <div className="w-[104px] h-[104px] bg-white" />
-          <button
-            onClick={() => pressNumber("0")}
-            className="w-[104px] h-[104px] bg-bg flex items-center justify-center text-[36px] font-semibold"
-          >
-            0
-          </button>
+          <PasswordBtn key={0} d={0} pressNumber={pressNumber} />
           <div className="w-[104px] h-[104px] bg-white" />
         </div>
       </div>
