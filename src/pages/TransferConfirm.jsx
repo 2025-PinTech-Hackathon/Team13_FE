@@ -6,8 +6,8 @@ import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import BottomBtn from "../components/BottomBtn";
 
 const TransferConfirm = () => {
-    const navigate = useNavigate();
-    
+  const navigate = useNavigate();
+
   const accountName = "내돈";
   const accountNumber = "000000-00-000000";
   const balance = "100,000원";
@@ -16,8 +16,6 @@ const TransferConfirm = () => {
   const amount = 56700;
 
   return (
-    
-
     <main className="relative w-[480px] h-screen mx-auto flex flex-col justify-center items-center px-5 py-8">
       {/* 상단: 계좌 정보 */}
       <div className="flex flex-col items-center space-y-2 ">
@@ -53,22 +51,6 @@ const TransferConfirm = () => {
         <p className="Pr_Re_16 text-txt-gray-2">
           보내시려는 정보가 맞다면, 확인 버튼을 눌러 주세요.
         </p>
-      </div>
-
-      {/* 하단: 취소 / 확인 버튼 */}
-      <div className="absolute bottom-0 left-0 w-full flex">
-        <button
-          className="flex-1 h-[80px] bg-gray2 text-txt-black Pr_SB_20 pt-1"
-          onClick={() => {/* 이전 라우터 */}}
-        >
-          취소
-        </button>
-        <button
-          className="flex-1 h-[80px] bg-main text-txt-black Pr_SB_20 pt-1"
-          onClick={() => navigate('/password')}
-        >
-          확인
-        </button>
       </div>
 
       <BottomBtn prevRoute="/ar" nextRoute="/password" />
