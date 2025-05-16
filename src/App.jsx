@@ -7,6 +7,11 @@ import MyAccount from "./pages/MyAccount";
 import SendMoneyCamera from "./pages/SendMoneyCamera";
 import TransferConfirm from "./pages/TransferConfirm";
 import Password from "./pages/Password";
+import AR from "./pages/AR";
+import Loading from "./pages/Loading";
+
+import "./styles/fonts.css";
+
 
 function App() {
   return (
@@ -17,6 +22,9 @@ function App() {
             {/* <Route index element={<Landing />} /> */}
             {/* <Route index element={<SendMoneyCamera />} /> */}
             <Route index element={<TransferConfirm />} />
+            {/* <Route index element={<SendMoneyCamera />} /> */}
+            <Route path="/ar" element={<AR />} />
+            <Route path="/loading" element={<Loading />} />
           </Route>
 
             {/* 돈 송금하기 */}
