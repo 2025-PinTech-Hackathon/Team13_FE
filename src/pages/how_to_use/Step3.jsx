@@ -7,7 +7,7 @@ const Step3 = () => {
   return (
     <main className="w-full min-h-screen flex flex-col justify-center pl-[6.66666666666667%] pr-[5%]">
       {/* 상단 */}
-      <div className="flex flex-col mt-[-170px]">
+      <div className="flex flex-col mt-[-100px]">
         <div className="flex justify-between">
           <p className="text-txt-black Pr_SB_28">송금 보내는 방법</p>
           <button
