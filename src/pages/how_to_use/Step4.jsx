@@ -7,7 +7,7 @@ const Step4 = () => {
   return (
     <main className="w-full min-h-screen flex flex-col justify-center pl-[6.66666666666667%] pr-[5%]">
       {/* 상단 */}
-      <div className="flex flex-col">
+      <div className="flex flex-col mt-[-170px]">
         <div className="flex justify-between">
           <p className="text-txt-black Pr_SB_28">송금 보내는 방법</p>
           <button
@@ -49,7 +49,7 @@ const Step4 = () => {
       </div>
 
       {/* 하단 */}
-      <div className="flex flex-col justify-center items-center">
+      <div className="relative top-[-50px] flex flex-col justify-center items-center">
         <div className="flex items-center space-x-2">
           <div className="w-[12px] h-[12px] rounded-full bg-main"></div>
           <div className="w-[12px] h-[12px] rounded-full bg-main"></div>

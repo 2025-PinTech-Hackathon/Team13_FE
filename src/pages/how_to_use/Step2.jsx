@@ -7,7 +7,7 @@ const Step2 = () => {
   return (
     <main className="w-full min-h-screen flex flex-col justify-center pl-[6.66666666666667%] pr-[5%]">
       {/* 상단 */}
-      <div className="flex flex-col">
+      <div className="flex flex-col mt-[-100px]">
         <div className="flex justify-between">
           <p className="text-txt-black Pr_SB_28">송금 보내는 방법</p>
           <button
@@ -25,7 +25,7 @@ const Step2 = () => {
       </div>
 
       {/* 이미지 및 화살표 */}
-      <div className="flex justify-evenly items-center w-full object-cover aspect-[4/5]">
+      <div className="flex justify-evenly items-center w-full object-cover aspect-[2/3]">
         <button onClick={() => navigate("/step1")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +65,7 @@ const Step2 = () => {
       </div>
 
       {/* 하단 */}
-      <div className="flex flex-col justify-center items-center ">
+      <div className="relative top-[-100px] flex flex-col justify-center items-center ">
         {/* <div className="h-[5px]"></div> */}
 
         <div className="flex items-center space-x-2">

@@ -19,7 +19,7 @@ const Step1 = () => {
   return (
     <main className="w-full min-h-screen flex flex-col justify-center pl-[6.66666666666667%] pr-[5%]">
       {/* 상단 */}
-      <div className="flex flex-col">
+      <div className="flex flex-col mt-[-100px]">
         <div className="flex justify-between">
           <p className="text-txt-black Pr_SB_28">송금 보내는 방법</p>
           <button
@@ -38,7 +38,7 @@ const Step1 = () => {
 
       {/* 이미지 및 화살표 */}
       <div className="flex justify-evenly">
-        <div className="flex justify-center items-center w-[80%] aspect-[4/5] object-cover">
+        <div className="flex justify-center items-center w-[80%] aspect-[2/3] object-cover">
             <img src={step1} alt="Step 1" className="w-[73.95833333333333%] h-auto" />
             </div>
         {/* 내비게이트 step2 이동 */}
@@ -61,7 +61,7 @@ const Step1 = () => {
       </div>
 
       {/* 하단 */}
-        <div className="flex flex-col justify-center items-center space-y-4">
+        <div className="relative top-[-100px] flex flex-col justify-center items-center space-y-4">
         {/* ✅ 2초 후에 사라지는 말풍선 */}
         <div
           className={`w-[267px] h-[56px] rounded-[10px] border border-gray2 bg-gray2 transition-opacity duration-300 ${
