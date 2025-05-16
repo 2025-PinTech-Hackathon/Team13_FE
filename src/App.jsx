@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./styles/fonts.css";
 import DefaultLayout from "./layouts/DefaultLayout";
 import Landing from "./pages/Landing";
 import SendMoney from "./pages/SendMoney";
 import MyAccount from "./pages/MyAccount";
+import SendMoneyCamera from "./pages/SendMoneyCamera";
 
 function App() {
   return (
@@ -10,7 +12,8 @@ function App() {
       <div className="flex flex-col items-center justify-center min-h-screen">
         <Routes>
           <Route path="/" element={<DefaultLayout />}>
-            <Route index element={<Landing />} />
+            {/* <Route index element={<Landing />} /> */}
+            <Route index element={<SendMoneyCamera />} />
           </Route>
 
             {/* 돈 송금하기 */}
@@ -20,7 +23,7 @@ function App() {
           <Route path="/my_account" element={<MyAccount />}></Route>
         </Routes>
       </div>
-    </Router>
+    </Router> 
   );
 }
 
