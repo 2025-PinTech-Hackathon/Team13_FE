@@ -1,7 +1,19 @@
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import DefaultLayout from "./layouts/DefaultLayout";
+import Landing from "./pages/Landing";
 
 function App() {
-  return <div className="w-12 h-12 bg-main"></div>;
+  return (
+    <Router>
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <Routes>
+          <Route path="/" element={<DefaultLayout />}>
+            <Route index element={<Landing />} />
+          </Route>
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
