@@ -5,95 +5,99 @@ import cameraButton from "./../assets/camera_button.png";
 import sendMoneyAr from "./../assets/send_money_ar.png";
 import { useNavigate } from "react-router-dom";
 import phone_rotate from "./../assets/phone_rotate.svg";
+import axiosClient from "../services/axiosClient";
+
+const FIXED_PROMPT =
+  "왼쪽, 오른쪽 파트를 각각 영어로 번역하고 중괄호로만 감싸진 json 포맷으로 변환한것만 나에게 줘. '```', 'json'은 출력하지마. json 파일 필드명은 bank, account_number, name, amount 로 해줘. 'Left', 'Right' 도 출력해줘.";
+
+const openai = new OpenAI({
+  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true,
+});
 
 function AR() {
   const webcamRef = useRef(null);
-  const [isCameraOn, setIsCameraOn] = useState(true);
-  const [capturedImage, setCapturedImage] = useState(null);
-  const [isPortrait, setIsPortrait] = useState(false);
-  const [fullPhoto, setFullPhoto] = useState(null);
-
   const navigate = useNavigate();
 
   const MAX_WIDTH = 16320;
   const MAX_HEIGHT = 12240;
-
   const videoConstraints = {
-    // width: 640,
-    // height: 480,
     width: { ideal: MAX_WIDTH },
     height: { ideal: MAX_HEIGHT },
-    // facingMode: "user", // <- 테스트용 전면 카메라
-    facingMode: "environment", // <- 후면 카메라 고정
+    facingMode: "environment",
   };
 
-  /*
-  useEffect(() => {
-    // 1) matchMedia 객체 생성
-    const mql = window.matchMedia("(orientation: portrait)");
-
-    // 2) 콜백: matches 가 true면 세로, false면 가로
-    const onChange = (e) => setIsPortrait(e.matches);
-
-    // 3) 초기 상태 설정
-    setIsPortrait(mql.matches);
-
-    // 4) 이벤트 리스너 등록 (최신 브라우저와 레거시 대응)
-    if (typeof mql.addEventListener === "function") {
-      mql.addEventListener("change", onChange);
-    } else {
-      mql.addListener(onChange);
-    }
-
-    return () => {
-      if (typeof mql.removeEventListener === "function") {
-        mql.removeEventListener("change", onChange);
-      } else {
-        mql.removeListener(onChange);
-      }
-    };
-  }, []);
-  */
-
-  // 풀 해상도 촬영
+  // 촬영 → OCR → DB 저장 → Confirm 이동
   const takeFullPhoto = async () => {
     if (!webcamRef.current?.stream) return;
-    const track = webcamRef.current.stream.getVideoTracks()[0];
-    // ImageCapture 생성
     try {
+      const track = webcamRef.current.stream.getVideoTracks()[0];
       const imageCapture = new window.ImageCapture(track);
       const blob = await imageCapture.takePhoto();
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setFullPhoto(reader.result);
-        // 다운로드
-        const link = document.createElement("a");
-        link.href = reader.result;
-        link.download = `fullres-${Date.now()}.png`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+      reader.onloadend = async () => {
+        const dataUrl = reader.result;
+
+        // 1) GPT-4 Vision OCR
+        let ocrContent;
+        try {
+          const resp = await openai.chat.completions.create({
+            model: "gpt-4o",
+            messages: [
+              { role: "user", content: FIXED_PROMPT },
+              {
+                role: "user",
+                content: "",
+                attachments: [
+                  {
+                    type: "image_url",
+                    image_url: { url: dataUrl },
+                  },
+                ],
+              },
+            ],
+            max_tokens: 1000,
+          });
+          ocrContent = resp.choices[0].message.content.trim();
+        } catch (err) {
+          console.error("OCR 호출 실패:", err);
+          alert("이미지 분석 중 오류가 발생했습니다.");
+          return;
+        }
+
+        // 2) JSON 파싱
+        let parsed;
+        try {
+          parsed = JSON.parse(ocrContent);
+        } catch (err) {
+          console.error("JSON 파싱 오류:", err, ocrContent);
+          alert("분석 결과 형식이 올바르지 않습니다.");
+          return;
+        }
+
+        if (!parsed.Left) {
+          alert("왼쪽 정보가 감지되지 않았습니다.");
+          return;
+        }
+
+        // 3) DB 저장
+        try {
+          const res = await axiosClient.post("/api/upload", { Left: parsed.Left });
+          if (res.data.status === "success") {
+            navigate("/confirm");
+          } else {
+            alert("서버에 저장하는데 실패했습니다.");
+          }
+        } catch (err) {
+          console.error("API 호출 실패:", err);
+          alert("서버 통신 중 오류가 발생했습니다.");
+        }
       };
       reader.readAsDataURL(blob);
     } catch (error) {
-      alert("풀 해상도 촬영 실패", error);
-      // fallback to screenshot
-      capture();
+      console.error("촬영 실패:", error);
+      alert("카메라 캡처에 실패했습니다.");
     }
-  };
-
-  // 기본 캡처
-  const capture = () => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    setCapturedImage(imageSrc);
-
-    // 이미지 다운로드
-    const link = document.createElement("a");
-    link.href = imageSrc;
-    link.download = `capture-${new Date().getTime()}.png`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   return (
