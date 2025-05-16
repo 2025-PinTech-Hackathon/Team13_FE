@@ -4,7 +4,7 @@ const BottomBtn = ({ prevRoute, nextRoute, leftText = "취소", rightText = "확
   const navigate = useNavigate();
 
   return (
-    <div className="absolute bottom-0 left-0 w-full flex">
+    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full flex max-w-[480px]">
       <button
         className="flex-1 h-[80px] bg-gray2 text-txt-black Pr_SB_20 pt-1"
         onClick={() => {
