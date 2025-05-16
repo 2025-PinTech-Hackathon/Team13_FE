@@ -103,15 +103,6 @@ function AR() {
 
   return (
     <main className="w-full h-screen">
-      {isPortrait && (
-        <>
-          <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50"></div>
-          <div className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-full z-[60]">
-            <img className="z-60" src={phone_rotate} alt="phone_rotate" />
-            <p className="Pr_SB_28 text-white ">휴대폰을 가로로 돌려 주세요.</p>
-          </div>
-        </>
-      )}
       <div className="w-full h-full" style={{ position: "relative" }}>
         {isCameraOn && !capturedImage && !fullPhoto && (
           <div className="flex justify-center items-center w-full h-full">
