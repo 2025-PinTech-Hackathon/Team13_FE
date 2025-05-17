@@ -5,32 +5,37 @@ import BankLogo from "../components/BankLogo";
 import BottomBtn from "../components/BottomBtn";
 import { parseBankName } from "../utils/parseBankName";
 import OpenAI from "openai";
+import SendMoneyLoading from "./SendMoneyLoading";
 
 const openai = new OpenAI({
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
   dangerouslyAllowBrowser: true,
 });
 
-const translateToKorean = async (text) => {
-  const completion = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [
-      {
-        role: "system",
-        content:
-          "다음 사람 이름을 자연스러운 한국어 발음으로만 번역하세요. 예: “Kim Minji”를 “김민지”로 번역해줘.",
-      },
-      { role: "user", content: text },
-    ],
-    temperature: 0.1,
-  });
-  return completion.choices[0].message.content.trim();
-};
-
 const TransferConfirm2 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { response } = location.state || {};
+
+  const [loading, setLoading] = useState(true);
+
+  const translateToKorean = async (text) => {
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content:
+            "다음 사람 이름을 자연스러운 한국어 발음으로만 번역하세요. 예: “Kim Minji”를 “김민지”로 번역해줘.",
+        },
+        { role: "user", content: text },
+      ],
+      temperature: 0.1,
+    });
+
+    setLoading(false);
+    return completion.choices[0].message.content.trim();
+  };
 
   // 1) JSON 파싱, 실패 시 null
   let parsed = null;
@@ -90,6 +95,11 @@ const TransferConfirm2 = () => {
 
   console.log(senderBankName);
   console.log(recipientBankName);
+
+  if (loading) {
+    return <SendMoneyLoading />;
+  }
+
   return (
     <main className="relative w-full h-screen mx-auto flex flex-col justify-center items-center px-5 py-8">
       {/* 상단: 보내는 사람 계좌 정보 */}
