@@ -11,7 +11,7 @@ const Password = () => {
   const CORRECT_PIN = "1234";
 
   const location = useLocation();
-  const { response } = location.state || {};
+  const { response, korName } = location.state || {};
 
   // 랜덤하게 섞인 숫자 배열 생성
   const shuffledNumbers = useMemo(() => {
@@ -47,7 +47,7 @@ const Password = () => {
     }
     if (pin === CORRECT_PIN) {
       // 다음 스텝으로 이동
-      navigate("/send_complete", { state: { response: response } });
+      navigate("/send_complete", { state: { response: response, korName: korName } });
     } else {
       setAttempts((prev) => prev + 1); // 틀릴 때마다 카운트
       setPin("");

@@ -5,7 +5,7 @@ import { parseBankName } from "../utils/parseBankName";
 
 const SendMonyComplete = () => {
   const location = useLocation();
-  const { response } = location.state || {};
+  const { response, korName } = location.state || {};
 
   // 3) 구조 분해 할당
   const { Left, Right } = response;
@@ -43,7 +43,7 @@ const SendMonyComplete = () => {
 
           <div className="flex justify-between mt-[23px]">
             <p className="Pr_Re_20 text-txt-gray-2">예금주</p>
-            <p className="Pr_SB_28">{recipientName}</p>
+            <p className="Pr_SB_28">{korName.recipientNameKr}</p>
           </div>
 
           <div className="flex justify-between mt-[23px]">

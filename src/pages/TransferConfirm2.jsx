@@ -149,7 +149,11 @@ const TransferConfirm2 = () => {
         </button>
         <button
           className="flex-1 h-[80px] bg-main text-txt-black Pr_SB_20 pt-1"
-          onClick={() => navigate("/password", { state: { response: parsed } })}
+          onClick={() =>
+            navigate("/password", {
+              state: { response: parsed, korName: { senderNameKr, recipientNameKr } },
+            })
+          }
         >
           확인
         </button>
