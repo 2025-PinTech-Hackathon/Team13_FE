@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import BankLogo from "../components/BankLogo";
@@ -18,7 +18,7 @@ const translateToKorean = async (text) => {
       {
         role: "system",
         content:
-          "다음 사람 이름을 자연스러운 한국어 발음으로만 번역하세요. 예: “Kim Minji” → “김민지”",
+          "다음 사람 이름을 자연스러운 한국어 발음으로만 번역하세요. 예: “Kim Minji”를 “김민지”로 번역해줘.",
       },
       { role: "user", content: text },
     ],
